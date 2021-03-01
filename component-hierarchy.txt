@@ -2,12 +2,16 @@ App
 |__Nav
 |   |__ContrastChecker  
 |   |__Collection
-|     
-|__PaletteBuilder 
-|    |__ColorPalette  
-|    |__Preview 
-|    |__Matrix
-|  
+|
+|__ContrastChecker    
+|   |__PaletteDetails
+|       |__ColorPalette  
+|       |__Preview 
+|       |__Matrix
+|
 |__Collection 
 |   |__ColorPalette
+      
+
+
       
