@@ -22,11 +22,13 @@ git clone https://github.com/hipstina/color-mind.git
 
 
 ### **Screenshots**
-![rusty burlap swatch](./assets/wireframe1%20-%202%20colors.png)
+![component hierarchy](./assets/component-hierarchy.png)
 
-![rusty burlap swatch](./assets/wireframe2%20-%202%20colors.png)
+![wireframe-p1](./assets/wireframe1%20-%202%20colors.png)
 
-![rusty burlap swatch](./assets/wireframe3%20-%202%20colors.png)
+![wireframe-p2](./assets/wireframe2%20-%202%20colors.png)
+
+![wireframe-p3](./assets/wireframe3%20-%202%20colors.png)
 
 ### **Future Updates**
 Track the development of this project on Trello: https://trello.com/b/B06jilKW/p2
