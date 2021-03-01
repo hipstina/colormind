@@ -1,14 +1,13 @@
 App
-  Nav
-    ContrastChecker
-    Collection
-  ColorPalette
-     
-  PaletteBuilder 
-    ColorPalette  
-    Preview 
-    Matrix
-  
-  Collection 
-      ColorPalette
+|__Nav
+|   |__ContrastChecker  
+|   |__Collection
+|     
+|__PaletteBuilder 
+|    |__ColorPalette  
+|    |__Preview 
+|    |__Matrix
+|  
+|__Collection 
+|   |__ColorPalette
       
