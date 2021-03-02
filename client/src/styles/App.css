@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.app-layout {
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: space-between;
+}
