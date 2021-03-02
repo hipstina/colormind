@@ -2,7 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('morgan')
-const routes = require('routes')
+const ColorRouter = require('./routes/ColorRouter')
+const ColorComboRouter = require('./routes/ColorComboRouter')
+const PaletteRouter = require('./routes/PaletteRouter')
+const CollectionRouter = require('./routes/CollectionRouter')
 
 const db = require('./db')
 const path = require('path')
@@ -14,6 +17,11 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'))
+
+app.use('/api/', ColorRouter)
+app.use('/api/', ColorComboRouter)
+app.use('/api/', PaletteRouter)
+app.use('/api/', CollectionRouter)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 

@@ -1,13 +1,18 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
+// require('dotenv').config()
 
-let dbUrl =
+/* let dbUrl =
   process.env.NODE_ENV === 'production'
     ? process.env.MONGODB_URI
-    : 'mongodb://127.0.0.1:27017/colorDatabase'
+    : 'mongodb://127.0.0.1:27017/colorDatabase' */
+
+// let MONGODB_URI =
+//   process.env.PROD_MONGODB ||
+//   process.env.MONGODB_URI ||
+//   'mongodb://127.0.0.1:27017/colorDatabase'
 
 mongoose
-  .connect(dbUrl, {
+  .connect('mongodb://127.0.0.1:27017/colormindDatabase', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: true
@@ -18,7 +23,6 @@ mongoose
   .catch((e) => {
     console.error('Connection error', e.message)
   })
-
 mongoose.set('debug', true)
 const db = mongoose.connection
 
