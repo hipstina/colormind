@@ -1,9 +1,9 @@
-const CollectionRouter = require('express').Router()
-const collectionController = require('../controllers/CollectionController')
+const Router = require('express').Router()
+const CollectionController = require('../controllers/CollectionController')
 
-CollectionRouter.get('/view/collection', collectionController.getCollection)
-CollectionRouter.post('/add/collection', collectionController.createCollection)
-// CollectionRouter.delete('/deleteColor', collectionController.deleteCollection)
-// CollectionRouter.update('/edit/collection', collectionController.editCollection)
+Router.get('/view/collection', CollectionController.getCollection)
+Router.post('/add/collection', CollectionController.createCollection)
+// Router.delete('/deleteColor', CollectionController.deleteCollection)
+// Router.update('/edit/collection', CollectionController.editCollection)
 
-module.exports = CollectionRouter
+module.exports = Router

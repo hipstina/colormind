@@ -1,9 +1,9 @@
-const PaletteRouter = require('express').Router()
-const paletteController = require('../controllers/PaletteController')
+const Router = require('express').Router()
+const PaletteController = require('../controllers/PaletteController')
 
-PaletteRouter.get('/view/:palette_id', paletteController.findPalette)
-PaletteRouter.post('/add/:palette_id', paletteController.createPalette)
-PaletteRouter.delete('/remove/:palette_id', paletteController.deletePalette)
-// PaletteRouter.update('/edit/:palette_id', paletteController.editPalette)
+Router.get('/view/:palette_id', PaletteController.findPalette)
+Router.post('/add/:palette_id', PaletteController.createPalette)
+Router.delete('/remove/:palette_id', PaletteController.deletePalette)
+// Router.update('/edit/:palette_id', PaletteController.editPalette)
 
-module.exports = PaletteRouter
+module.exports = Router

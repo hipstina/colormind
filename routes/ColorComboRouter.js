@@ -1,7 +1,7 @@
-const ColorComboRouter = require('express').Router()
-const colorComboController = require('../controllers/ColorComboController')
+const Router = require('express').Router()
+const ColorComboController = require('../controllers/ColorComboController')
 
-ColorComboRouter.get('/view/:combo_id', colorComboController.findColorCombo)
-ColorComboRouter.post('/add/:combo_id', colorComboController.createColorCombo)
+Router.get('/view/:combo_id', ColorComboController.findColorCombo)
+Router.post('/add/:combo_id', ColorComboController.createColorCombo)
 
-module.exports = ColorComboRouter
+module.exports = Router
