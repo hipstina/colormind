@@ -11,14 +11,22 @@ module.exports = new Schema(
       type: String,
       required: true
     },
-    color1_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'colors'
+    color1: {
+      type: String,
+      required: true
     },
-    color2_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'colors'
+    color2: {
+      type: String,
+      required: true
     }
+    // color1_id: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'colors'
+    // },
+    // color2_id: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'colors'
+    // }
   },
   { timestamps: true }
 )

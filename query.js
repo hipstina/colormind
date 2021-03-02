@@ -1,9 +1,10 @@
 const db = require('./db')
 const { Color } = require('./models')
+const { ColorCombo } = require('./models')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-const main = async () => {
+const addColor = async () => {
   try {
     const color = await new Color({
       code: '#FFFFF',
@@ -16,8 +17,24 @@ const main = async () => {
   }
 }
 
+const addColorCombo = async () => {
+  try {
+    const combo = await new ColorCombo({
+      contrast_ratio: 8,
+      w3_grade: 'AAA',
+      color1: 'fff000',
+      color2: '000fff'
+    })
+    await combo.save()
+    console.log('Created colorCombo!')
+  } catch (error) {
+    throw error
+  }
+}
+
 const run = async () => {
-  await main()
+  // await addColor()
+  await addColorCombo()
   db.close()
 }
 
