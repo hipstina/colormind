@@ -2,16 +2,25 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  margin-top: 10vh;
 }
 
-.sub-nav-wrapper ul {
+.sub-nav {
   list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  min-width: 380px;
 }
 
-.sub-nav-wrapper li {
+.sub-nav-wrapper button {
   display: inline-block;
   padding: 15px;
+  margin: 0;
   text-decoration: underline;
+
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .home-layout-wrapper {
@@ -26,6 +35,4 @@
   width: 100%;
 
   margin: 0 auto;
-
-  border: 1px solid magenta;
 }

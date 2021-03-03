@@ -60,7 +60,7 @@ const getCombo = async (req, res) => {
   try {
     const combo = await ColorCombo.findById(req.params.combo_id)
 
-    res.send(`Combo found: ${combo}`)
+    res.send(combo)
   } catch (error) {
     res.status(500).json({ msg: error.message })
   }

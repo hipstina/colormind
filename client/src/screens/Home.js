@@ -32,10 +32,20 @@ export default class Home extends Component {
   }
 
   render() {
+    const {
+      data,
+      selectedCombo,
+      publishBtn,
+      handleSubmit,
+      handleChange,
+      color1,
+      color2
+    } = this.props
+
     return (
       <div className="home-layout-wrapper">
         <div className="sub-nav-wrapper">
-          <ul>
+          <div className="sub-nav">
             <button onClick={this.handleClick} pick="0">
               Collection
             </button>
@@ -43,8 +53,8 @@ export default class Home extends Component {
             <button onClick={this.handleClick} pick="1">
               Custom
             </button>
-          </ul>
-          <ul>
+          </div>
+          <div className="sub-nav">
             <button onClick={this.handleClick} view="0">
               Checker
             </button>
@@ -52,11 +62,20 @@ export default class Home extends Component {
             <button onClick={this.handleClick} view="1">
               Preview
             </button>
-          </ul>
+          </div>
         </div>
 
         <section className="home-layout">
-          <Picker pick={this.state.pick} />
+          <Picker
+            pick={this.state.pick}
+            selectedCombo={selectedCombo}
+            handleSubmit={handleSubmit}
+            // handleChange={handleChange}
+            publishBtn={publishBtn}
+            data={data}
+            color1={color1}
+            color2={color2}
+          />
           <Viewer view={this.state.view} />
         </section>
       </div>
