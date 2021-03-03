@@ -1,0 +1,4 @@
+.color-combo-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}

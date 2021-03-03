@@ -7,10 +7,10 @@ module.exports = new Schema(
       type: String,
       required: true
     },
-    palette_id: [
+    combo_id: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'palettes'
+        ref: 'combos'
       }
     ]
   },

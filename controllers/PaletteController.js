@@ -59,8 +59,8 @@ const editPalette = async (req, res) => {
 }
 
 module.exports = {
-  createPalette,
-  findPalette,
-  deletePalette,
-  editPalette
+  // createPalette,
+  // findPalette,
+  // deletePalette,
+  // editPalette
 }
