@@ -10,9 +10,9 @@ export default class Picker extends Component {
       handleSubmit,
       publishBtn,
       selectedCombo,
-      handleChange,
       color1,
-      color2
+      color2,
+      getCollection
     } = this.props
 
     return (
@@ -27,6 +27,7 @@ export default class Picker extends Component {
             selectedCombo={selectedCombo}
             color1={color1}
             color2={color2}
+            getCollection={getCollection}
           />
         )}
       </div>

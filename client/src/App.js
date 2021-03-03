@@ -27,16 +27,16 @@ export default class App extends Component {
     try {
       const res = await axios.get(`${BASE_URL}/api/view/collection`)
       this.setState({
-        data: res.data.collection[0]
+        data: res.data.collection.combo_id
       })
-      // console.log(res.data)
+      console.log(res.data)
     } catch (error) {
       throw error
     }
   }
 
   render() {
-    const data = this.state.data.combo_id
+    const data = this.state.data
 
     return (
       <div className="App ">
@@ -58,6 +58,7 @@ export default class App extends Component {
                   publishBtn={this.state.publishBtn}
                   color1={this.state.color1}
                   color2={this.state.color2}
+                  getCollection={this.getCollection}
                 />
               )}
             />

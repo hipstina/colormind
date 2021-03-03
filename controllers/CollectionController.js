@@ -33,13 +33,29 @@ const { ColorCombo } = require('../models')
 //   }
 // }
 
-const getCollection = async (req, res) => {
+const getCollection = async (req, res, next) => {
   try {
-    const collection = await Collection.find()
-    return res.send(res.status(200).json({ collection }))
+    const allCombos = await ColorCombo.find()
+
+    const collection = await new Collection({
+      alias: 'Test-collection',
+      combo_id: allCombos
+    })
+    collection.save()
+    res.send(res.status(200).json({ collection }))
   } catch (error) {
     return res.status(500).send(error.message)
   }
+  next(),
+    async (req, res) => {
+      try {
+        const collection = await Collection.find()
+        console.log('got collection', collection)
+        res.send(res.status(200).json({ collection }))
+      } catch (error) {
+        return res.status(500).send(error.message)
+      }
+    }
 }
 
 const createCollection = async (req, res) => {
@@ -57,10 +73,33 @@ const createCollection = async (req, res) => {
   }
 }
 
+const updateCollection = async (req, res) => {
+  try {
+    const { id } = req.params
+    await Collection.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true },
+      (err, col) => {
+        if (err) {
+          res.status(500).send(err)
+        }
+        if (!col) {
+          res.status(500).send('Collection not found')
+        }
+        return res.status(200).json(col)
+      }
+    )
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createCollection,
   // getCollectionById,
-  getCollection
+  getCollection,
+  updateCollection
 }
 
 /* 

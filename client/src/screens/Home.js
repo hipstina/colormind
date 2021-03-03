@@ -37,7 +37,6 @@ export default class Home extends Component {
       selectedCombo,
       publishBtn,
       handleSubmit,
-      handleChange,
       color1,
       color2
     } = this.props
@@ -70,11 +69,11 @@ export default class Home extends Component {
             pick={this.state.pick}
             selectedCombo={selectedCombo}
             handleSubmit={handleSubmit}
-            // handleChange={handleChange}
             publishBtn={publishBtn}
             data={data}
             color1={color1}
             color2={color2}
+            getCollection={this.getCollection}
           />
           <Viewer view={this.state.view} />
         </section>

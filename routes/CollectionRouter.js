@@ -8,6 +8,6 @@ Router.get('/view/collection', CollectionController.getCollection)
 // )
 Router.post('/add/collection', CollectionController.createCollection)
 // Router.delete('/deleteColor', CollectionController.deleteCollection)
-// Router.update('/edit/collection', CollectionController.editCollection)
+// Router.put('/edit/collection/:id', CollectionController.updateCollection)
 
 module.exports = Router

@@ -24,6 +24,9 @@ export default class Custom extends Component {
     this.addCombo()
   }
 
+  // move addCombo to App
+  // setup another get request to refresh data
+
   addCombo = async () => {
     const newCombo = {
       contrast_ratio: 5,
@@ -32,10 +35,12 @@ export default class Custom extends Component {
       color2: this.state.color2
     }
 
+    this.props.selectedCombo.push(newCombo)
+
     try {
       let res = await axios.post(`${BASE_URL}/api/add`, newCombo)
-
       console.log('testing POST:', res.data)
+      this.props.getCollection()
       return res.data
     } catch (error) {
       console.log(error)
