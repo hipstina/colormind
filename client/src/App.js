@@ -41,6 +41,22 @@ export default class App extends Component {
     }
   }
 
+  deleteCollection = async () => {
+    try {
+      const res = await axios.delete(
+        `${BASE_URL}/api/delete/collection/${this.state.collectionId}`
+      )
+      console.log(res.data)
+      const res2 = await axios.get(`${BASE_URL}/api/`)
+      this.setState({
+        data: res2.data
+      })
+      return res2.data
+    } catch (error) {
+      throw error
+    }
+  }
+
   addCombo = async () => {
     const newCombo = this.state.selectedCombo
 
@@ -100,7 +116,7 @@ export default class App extends Component {
             <Route exact path="/" component={Home} />
             <Route
               exact
-              path="/custom"
+              path="/checker"
               component={(routerProps) => (
                 <Custom
                   {...routerProps}
@@ -109,16 +125,17 @@ export default class App extends Component {
                 />
               )}
             />
+
             <Route
               exact
               path="/collections"
               component={(routerProps) => (
-                <Collections {...routerProps} data={this.state.data} />
+                <Collections {...routerProps} data={data} />
               )}
             />
             <Route
               exact
-              path="/collections/:id"
+              path="/collection/:id"
               component={(routerProps) => <Collection {...routerProps} />}
             />
             <Route exact path="/about" component={About} />
