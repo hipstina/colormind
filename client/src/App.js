@@ -63,10 +63,6 @@ export default class App extends Component {
     console.log('SOMEONE CLICKED', target)
   }
 
-  handleDelete = async () => {
-    // let res = await axios.post(`${BASE_URL}/api/add`, newCombo)
-  }
-
   setCombo = (combo) => {
     //this.props.selectedCombo.push(newCombo)
 
@@ -95,7 +91,6 @@ export default class App extends Component {
                   data={data}
                   selectedCombo={this.state.selectedCombo}
                   publishBtn={this.state.publishBtn}
-                  onClick={this.handleDelete}
                 />
               )}
             />

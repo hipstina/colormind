@@ -74,7 +74,6 @@ export default class Home extends Component {
             handleClick={handleClick}
             publishBtn={publishBtn}
             data={data}
-            onClick={onClick}
           />
           <Viewer view={this.state.view} />
         </section>

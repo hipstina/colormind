@@ -34,6 +34,22 @@ export default class Collection extends Component {
     })
   }
 
+  deleteCombo = async (comboId) => {
+    // const comboId = event.target.attributes.postId.value
+
+    try {
+      const res = await axios.delete(`${BASE_URL}/api/delete/combo/${comboId}`)
+      console.log(res.data)
+      const res2 = await axios.get(`${BASE_URL}/api/allposts`)
+      this.setState({
+        allPosts: res2.data.posts
+      })
+      return res2.data
+    } catch (error) {
+      throw error
+    }
+  }
+
   render() {
     console.log('COLLECTION STATE', this.state.data, this.state.combos)
     const combos = this.state.combos
@@ -49,7 +65,7 @@ export default class Collection extends Component {
                 key={combo.data.combo._id}
                 data={combo.data.combo}
                 comboId={combo.data.combo._id}
-                onClick={onClick}
+                onClick={this.deleteCombo}
               />
             )
           })}
