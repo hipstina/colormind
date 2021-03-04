@@ -7,7 +7,7 @@ module.exports = new Schema(
       type: String,
       required: true
     },
-    combo_id: [{ type: Schema.Types.ObjectId, ref: 'combos' }]
+    combos: [{ type: Schema.Types.ObjectId, ref: 'colorCombos' }]
   },
   { timestamps: true }
 )

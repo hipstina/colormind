@@ -3,6 +3,7 @@ const { Schema } = require('mongoose')
 
 module.exports = new Schema(
   {
+    _id: Schema.Types.ObjectId,
     contrast_ratio: {
       type: Number,
       required: true
@@ -18,10 +19,6 @@ module.exports = new Schema(
     color2: {
       type: String,
       required: true
-    },
-    collection_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'collections'
     }
     // color1_id: {
     //   type: Schema.Types.ObjectId,

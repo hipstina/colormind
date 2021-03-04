@@ -3,7 +3,7 @@ const ColorComboController = require('../controllers/ColorComboController1')
 
 Router.delete('/delete/combo/:combo_id', ColorComboController.deleteCombo)
 Router.post('/add', ColorComboController.createCombo)
-Router.get('/find/combo/:combo_id', ColorComboController.getCombo)
+Router.get('/find/combo/:combo_id', ColorComboController.getComboById)
 Router.get('/find/combos/', ColorComboController.getCombos)
 
 module.exports = Router

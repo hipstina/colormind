@@ -1,5 +1,6 @@
 const { ColorCombo } = require('../models')
 
+// use for getting or creating custom combos only
 const createCombo = async (req, res) => {
   try {
     // to avoid dupes, test the reverse order of each inputted combo
@@ -15,21 +16,23 @@ const createCombo = async (req, res) => {
         }
       ]
     })
-
-    if (combo) return res.status(404).send('Combo already exists.')
-
-    const newCombo = await new ColorCombo(req.body)
-    await newCombo.save()
+    // if combo exists, return existing combo. Else create new one.
+    if (combo) {
+      return res.send(combo)
+    } else {
+      const newCombo = await new ColorCombo(req.body)
+      await newCombo.save()
+    }
     if (newCombo) {
       return res.status(200).json({ newCombo })
-    }
-    return res.status(404).send('Combo not created.')
+    } else return res.status(404).send('Combo not created.')
   } catch (error) {
     throw error
   }
 }
 
-const getCombo = async (req, res) => {
+// use for combos in collection only
+const getComboById = async (req, res) => {
   try {
     const { combo_id } = req.params
     const combo = await ColorCombo.findById(combo_id)
@@ -63,7 +66,7 @@ const deleteCombo = async (req, res) => {
 
 module.exports = {
   createCombo,
-  getCombo,
+  getComboById,
   getCombos,
   deleteCombo
 }
