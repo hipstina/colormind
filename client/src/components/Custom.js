@@ -54,12 +54,15 @@ export default class Custom extends Component {
             onChange={this.handleChange}
           />
           <button onClick={this.props.handleClick}>Preview</button>
-          {[...Object.keys(this.props.selectedCombo)].length > 0 && (
+          {/* {[...Object.keys(this.props.selectedCombo)].length > 0 && (
             <button type="submit" className="custom-btn">
               Save to Collection
             </button>
-          )}
+          )} */}
         </form>
+        <div className="">
+          <h1>Color Checker</h1>
+        </div>
       </div>
     )
   }

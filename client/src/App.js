@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './screens/Home'
 import About from './screens/About'
+import Collections from './screens/Collections'
+import Custom from './components/Custom'
 import Collection from './components/Collection'
 
 import axios from 'axios'
@@ -15,22 +17,23 @@ export default class App extends Component {
 
     this.state = {
       data: [],
-      selectedCombo: {},
+      selectedCombo: {
+        color1: '#B8D4E3',
+        color2: '#F26419'
+      },
       publishBtn: false
     }
   }
 
   componentDidMount() {
-    this.getCollection()
+    this.getCollections()
   }
 
-  getCollection = async () => {
+  getCollections = async () => {
     try {
-      const res = await axios.get(
-        `${BASE_URL}/api/view/collection/60400871eec7ee2244085b0e`
-      )
+      const res = await axios.get(`${BASE_URL}/api/get/collections`)
       this.setState({
-        data: res.data.collection.combo_id
+        data: res.data
       })
       console.log('getCollection res.data:', res.data)
     } catch (error) {
@@ -45,7 +48,7 @@ export default class App extends Component {
       let res = await axios.post(`${BASE_URL}/api/add`, newCombo)
       console.log('addCombo:', res)
       const res2 = await axios.get(
-        `${BASE_URL}/api/view/collection/60400871eec7ee2244085b0e`
+        `${BASE_URL}/api/view/collection/6040ae59e580a341250c47ab`
       )
       console.log('getCollection again after addCombo:', res2)
       this.setState({
@@ -58,8 +61,8 @@ export default class App extends Component {
   }
 
   handleClick = ({ target }) => {
-    this.addCombo()
-    this.getCollection()
+    // this.addCombo()
+    // this.getCollections()
     console.log('SOMEONE CLICKED', target)
   }
 
@@ -73,14 +76,14 @@ export default class App extends Component {
 
   render() {
     const data = this.state.data
-
+    console.log('APP state', this.state.data)
     return (
       <div className="App ">
         <Nav nav={this.state.nav} />
 
         <main className="app-layout">
           <Switch>
-            <Route
+            {/* <Route
               exact
               path="/"
               component={(routerProps) => (
@@ -93,8 +96,31 @@ export default class App extends Component {
                   publishBtn={this.state.publishBtn}
                 />
               )}
+            /> */}
+            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/custom"
+              component={(routerProps) => (
+                <Custom
+                  {...routerProps}
+                  setCombo={this.setCombo}
+                  handleClick={this.handleClick}
+                />
+              )}
             />
-            <Route exact path="/collection" component={Collection} />
+            <Route
+              exact
+              path="/collections"
+              component={(routerProps) => (
+                <Collections {...routerProps} data={this.state.data} />
+              )}
+            />
+            <Route
+              exact
+              path="/collections/:id"
+              component={(routerProps) => <Collection {...routerProps} />}
+            />
             <Route exact path="/about" component={About} />
           </Switch>
         </main>

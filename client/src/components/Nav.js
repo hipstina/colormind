@@ -10,6 +10,8 @@ export default class NavRight extends Component {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
+        <NavLink to="/custom">Custom</NavLink>
+        <NavLink to="/collections">Collections</NavLink>
       </nav>
     )
   }

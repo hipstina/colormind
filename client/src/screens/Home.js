@@ -44,7 +44,7 @@ export default class Home extends Component {
 
     return (
       <div className="home-layout-wrapper">
-        <div className="sub-nav-wrapper">
+        {/* <div className="sub-nav-wrapper">
           <div className="sub-nav">
             <button onClick={this.handleClick} pick="0">
               Collection
@@ -54,19 +54,11 @@ export default class Home extends Component {
               Custom
             </button>
           </div>
-          <div className="sub-nav">
-            <button onClick={this.handleClick} view="0">
-              Checker
-            </button>
-
-            <button onClick={this.handleClick} view="1">
-              Preview
-            </button>
-          </div>
-        </div>
+        </div> */}
 
         <section className="home-layout">
-          <Picker
+          <h1>Home page!</h1>
+          {/* <Picker
             pick={this.state.pick}
             setCombo={setCombo}
             selectedCombo={selectedCombo}
@@ -74,8 +66,8 @@ export default class Home extends Component {
             handleClick={handleClick}
             publishBtn={publishBtn}
             data={data}
-          />
-          <Viewer view={this.state.view} />
+          /> */}
+          {/* <Viewer view={this.state.view} /> */}
         </section>
       </div>
     )
