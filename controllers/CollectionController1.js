@@ -16,7 +16,7 @@ getCollections = async (req, res) => {
 getOneCollection = async (req, res) => {
   try {
     const { id } = req.params
-    const collection = await Collection.findById(id)
+    const collection = await Collection.findById(id).populate('combos')
 
     if (collection) return res.status(200).json({ collection })
     return res
@@ -51,9 +51,10 @@ deleteCollection = async (req, res) => {
   }
 }
 
-deleteCollections = async (req, res) => {
+// cleanup!
+deleteCollectionsByName = async (req, res) => {
   try {
-    const deleted = await Collection.find()
+    const deleted = await Collection.find().deleteMany(req.body)
     if (deleted) return res.status(200).json({ deleted })
     return res.status(404).send('No collections found.')
   } catch (error) {
@@ -117,7 +118,7 @@ module.exports = {
   getOneCollection,
   getCollections,
   deleteCollection,
-  deleteCollections,
+  deleteCollectionsByName,
   findCollectionByName,
   updateCollectionById
 }
