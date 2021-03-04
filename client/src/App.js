@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './screens/Home'
 import About from './screens/About'
+import Collection from './components/Collection'
 
 import axios from 'axios'
 import { BASE_URL } from './globals'
@@ -14,7 +15,7 @@ export default class App extends Component {
 
     this.state = {
       data: [],
-      selectedCombo: [],
+      selectedCombo: {},
       publishBtn: false
     }
   }
@@ -25,14 +26,53 @@ export default class App extends Component {
 
   getCollection = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/api/view/collection`)
+      const res = await axios.get(
+        `${BASE_URL}/api/view/collection/60400871eec7ee2244085b0e`
+      )
       this.setState({
         data: res.data.collection.combo_id
       })
-      console.log(res.data)
+      console.log('getCollection res.data:', res.data)
     } catch (error) {
       throw error
     }
+  }
+
+  addCombo = async () => {
+    const newCombo = this.state.selectedCombo
+
+    try {
+      let res = await axios.post(`${BASE_URL}/api/add`, newCombo)
+      console.log('addCombo:', res)
+      const res2 = await axios.get(
+        `${BASE_URL}/api/view/collection/60400871eec7ee2244085b0e`
+      )
+      console.log('getCollection again after addCombo:', res2)
+      this.setState({
+        data: res2.data.collection.combo_id
+      })
+      return res2.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  handleClick = ({ target }) => {
+    this.addCombo()
+    this.getCollection()
+    console.log('SOMEONE CLICKED', target)
+  }
+
+  handleDelete = async () => {
+    // let res = await axios.post(`${BASE_URL}/api/add`, newCombo)
+  }
+
+  setCombo = (combo) => {
+    //this.props.selectedCombo.push(newCombo)
+
+    this.setState(() => ({
+      selectedCombo: combo
+    }))
   }
 
   render() {
@@ -50,18 +90,16 @@ export default class App extends Component {
               component={(routerProps) => (
                 <Home
                   {...routerProps}
-                  handleSubmit={this.handleSubmit}
+                  setCombo={this.setCombo}
                   handleClick={this.handleClick}
-                  // handleChange={this.handleChange}
                   data={data}
                   selectedCombo={this.state.selectedCombo}
                   publishBtn={this.state.publishBtn}
-                  color1={this.state.color1}
-                  color2={this.state.color2}
-                  getCollection={this.getCollection}
+                  onClick={this.handleDelete}
                 />
               )}
             />
+            <Route exact path="/collection" component={Collection} />
             <Route exact path="/about" component={About} />
           </Switch>
         </main>

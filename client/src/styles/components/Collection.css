@@ -1,4 +1,5 @@
 .color-combo-wrapper {
   display: flex;
   flex-flow: row wrap;
+  /* border: 1px solid #eee; */
 }

@@ -20,10 +20,11 @@ export default class Collection extends Component {
   }
 
   getAllCombos = () => {
-    this.state.data.forEach(async (id) => {
+    this.state.data.map(async (id) => {
+      console.log(id)
       try {
-        let combo = await axios.get(`${BASE_URL}/api/find/${id}`)
-
+        let combo = await axios.get(`${BASE_URL}/api/find/combo/${id}`)
+        console.log(combo)
         this.setState((prevState) => ({
           combos: [combo, ...prevState.combos]
         }))
@@ -34,15 +35,23 @@ export default class Collection extends Component {
   }
 
   render() {
+    console.log('COLLECTION STATE', this.state.data, this.state.combos)
     const combos = this.state.combos
-
+    const { onClick } = this.props
     return (
       <div>
         <h1>Collection</h1>
         <div className="color-combo-wrapper">
           {combos.map((combo) => {
-            console.log('combo rendered!', combo.data)
-            return <Combo key={combo._id} data={combo.data} />
+            console.log('COMBO PROPS', combo)
+            return (
+              <Combo
+                key={combo.data.combo._id}
+                data={combo.data.combo}
+                comboId={combo.data.combo._id}
+                onClick={onClick}
+              />
+            )
           })}
         </div>
       </div>

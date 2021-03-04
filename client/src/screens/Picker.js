@@ -5,29 +5,25 @@ import Collection from '../components/Collection'
 
 export default class Picker extends Component {
   render() {
-    console.log('Picker props', this.props)
+    // console.log('Picker props', this.props)
     const {
-      handleSubmit,
       publishBtn,
       selectedCombo,
-      color1,
-      color2,
-      getCollection
+      handleClick,
+      setCombo,
+      onClick
     } = this.props
 
     return (
       <div className="picker-layout">
         {this.props.pick === '0' ? (
-          <Collection data={this.props.data} />
+          <Collection data={this.props.data} onClick={onClick} />
         ) : (
           <Custom
-            handleSubmit={handleSubmit}
-            // handleChange={handleChange}
+            handleClick={handleClick}
             publishBtn={publishBtn}
             selectedCombo={selectedCombo}
-            color1={color1}
-            color2={color2}
-            getCollection={getCollection}
+            setCombo={setCombo}
           />
         )}
       </div>
