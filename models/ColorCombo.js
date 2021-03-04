@@ -18,6 +18,10 @@ module.exports = new Schema(
     color2: {
       type: String,
       required: true
+    },
+    collection_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'collections'
     }
     // color1_id: {
     //   type: Schema.Types.ObjectId,

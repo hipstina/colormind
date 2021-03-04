@@ -20,7 +20,10 @@ const createColorCombo = async (req, res) => {
     if (existing == false) {
       const combo = await new ColorCombo({ ...req.body })
       combo.save()
-      res.send(combo)
+      return res.send({
+        msg: `New combo created`,
+        combo: combo
+      })
     } else if (existing) {
       console.log('This combo already exists', existing)
       let comboProps = []
@@ -28,7 +31,7 @@ const createColorCombo = async (req, res) => {
         comboProps.push([` ${key}: ${req.body[key]}`])
       }
 
-      res.send({
+      return res.send({
         msg: `This combo already exists:${comboProps}`
       })
     } else {
@@ -59,8 +62,8 @@ const getCombo = async (req, res) => {
   // onClick get a collection palette to populate checker & preview
   try {
     const combo = await ColorCombo.findById(req.params.combo_id)
-
-    res.send(combo)
+    console.log('combo added:', combo)
+    return res.send(combo)
   } catch (error) {
     res.status(500).json({ msg: error.message })
   }

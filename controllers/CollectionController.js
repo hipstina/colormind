@@ -1,5 +1,4 @@
 const { Collection } = require('../models')
-const { ColorCombo } = require('../models')
 
 // const createCollection = async (req, res) => {
 //   try {
@@ -33,39 +32,75 @@ const { ColorCombo } = require('../models')
 //   }
 // }
 
-const getCollection = async (req, res, next) => {
-  try {
-    const allCombos = await ColorCombo.find()
+// const getCollection = async (req, res, next) => {
+//   try {
+//     const allCombos = await ColorCombo.find()
 
-    const collection = await new Collection({
-      alias: 'Test-collection',
-      combo_id: allCombos
-    })
-    collection.save()
-    res.send(res.status(200).json({ collection }))
+//     const collection = await new Collection({
+//       alias: 'Test-collection',
+//       combo_id: allCombos
+//     })
+//     collection.save()
+//     res.send(res.status(200).json({ collection }))
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+//   next(),
+//     async (req, res) => {
+//       try {
+//         const collection = await Collection.find()
+//         console.log('got collection', collection)
+//         res.send(res.status(200).json({ collection }))
+//       } catch (error) {
+//         return res.status(500).send(error.message)
+//       }
+//     }
+// }
+
+const getCollections = async (req, res) => {
+  try {
+    const collections = await Collection.find()
+      .populate('contrast_ratio')
+      .exec()
+
+    res.send(collections)
   } catch (error) {
-    return res.status(500).send(error.message)
+    throw error
   }
-  next(),
-    async (req, res) => {
-      try {
-        const collection = await Collection.find()
-        console.log('got collection', collection)
-        res.send(res.status(200).json({ collection }))
-      } catch (error) {
-        return res.status(500).send(error.message)
-      }
-    }
 }
+
+const getCollectionById = async (req, res) => {
+  const { id } = req.body
+  try {
+    const collection = await Collection.findOne({ _id: id })
+      .populate({ path: 'contrast_ratio' })
+      .exec()
+
+    console.log('testing populate', collection.contrast_ratio)
+    return res.send({ collection: collection, msg: 'returned a collection' })
+  } catch (error) {
+    throw error
+  }
+}
+
+// const createCollection = async (req, res) => {
+//   try {
+//     const allCombos = await ColorCombo.find()
+
+//     const collection = await new Collection({
+//       alias: 'Test-collection',
+//       combo_id: allCombos
+//     })
+//     collection.save()
+//     return res.send(res.status(200).json({ collection }))
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+// }
 
 const createCollection = async (req, res) => {
   try {
-    const allCombos = await ColorCombo.find()
-
-    const collection = await new Collection({
-      alias: 'Test-collection',
-      combo_id: allCombos
-    })
+    const collection = await new Collection()
     collection.save()
     return res.send(res.status(200).json({ collection }))
   } catch (error) {
@@ -96,9 +131,9 @@ const updateCollection = async (req, res) => {
 }
 
 module.exports = {
-  createCollection,
-  // getCollectionById,
-  getCollection,
+  // createCollection,
+  getCollectionById,
+  getCollections,
   updateCollection
 }
 

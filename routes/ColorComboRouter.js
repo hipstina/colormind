@@ -1,8 +1,9 @@
 const Router = require('express').Router()
-const ColorComboController = require('../controllers/ColorComboController')
+const ColorComboController = require('../controllers/ColorComboController1')
 
-Router.delete('/delete/:combo_id', ColorComboController.deleteCombo)
-Router.post('/add', ColorComboController.createColorCombo)
-Router.get('/find/:combo_id', ColorComboController.getCombo)
+Router.delete('/delete/combo/:combo_id', ColorComboController.deleteCombo)
+Router.post('/add', ColorComboController.createCombo)
+Router.get('/find/combo/:combo_id', ColorComboController.getCombo)
+Router.get('/find/combos/', ColorComboController.getCombos)
 
 module.exports = Router
