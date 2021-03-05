@@ -22,8 +22,9 @@ export default class Collection extends Component {
     console.log(this.props)
     if (this.state.collectionId) {
       this.getOneCollection()
-    } else this.setState({ setCombo: this.props.setCombo })
-    console.log('collection component mounted!')
+    }
+    // else this.setState({ setCombo: this.props.setCombo })
+    // console.log('collection component mounted!')
   }
 
   getOneCollection = async () => {
@@ -31,8 +32,12 @@ export default class Collection extends Component {
       let collection = await axios.get(
         `${BASE_URL}/api/view/collection/${this.state.collectionId}`
       )
-      this.setState({ collection: collection.data.collection })
-      return collection
+      if (collection) {
+        this.setState({ collection: collection.data.collection })
+        return collection
+      } else {
+        this.props.history.push('/collections')
+      }
     } catch (error) {
       console.log(error)
     }
@@ -49,8 +54,16 @@ export default class Collection extends Component {
     this.props.setCombo(newCombo)
   }
 
-  handleDelete = (event) => {
-    this.props.deleteCollection(event.target.value)
+  handleDelete = async (event) => {
+    event.preventDefault()
+    console.log(event.target.value)
+
+    try {
+      await this.props.deleteCollection(event.target.value)
+      this.props.history.push('/collections')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
@@ -59,8 +72,9 @@ export default class Collection extends Component {
     const collectionId = this.state.collectionId
 
     const renderCombosPreview = () => {
-      return this.props.collection.combos.map((combo, idx) => {
-        return idx <= 2 ? (
+      const combos = this.props.collection.combos
+      return combos.map((combo, idx) => {
+        return idx >= combos.length - 3 ? (
           <Combo
             key={combo._id + `${idx}`}
             {...combo}
@@ -74,7 +88,7 @@ export default class Collection extends Component {
     const renderCombosPage = () => {
       let comboData = this.state.collection
       if (comboData)
-        return comboData.combos.map((combo, idx) => {
+        return comboData.combos.reverse().map((combo, idx) => {
           return (
             <div key={combo._id + `${idx}`}>
               <Combo {...combo} />
@@ -83,6 +97,7 @@ export default class Collection extends Component {
                   onClick={this.handleClick}
                   color1={combo.color1}
                   color2={combo.color2}
+                  className="btn"
                 >
                   Preview
                 </button>
@@ -94,20 +109,21 @@ export default class Collection extends Component {
 
     const renderDeleteBtn = () => {
       let comboData = this.state.collection
+      // console.log('comboData', comboData._id)
       if (comboData)
         return (
-          <NavLink
-            to="/collections"
+          <button
+            className="btn"
             onClick={this.handleDelete}
-            value={collectionId}
+            value={comboData._id}
           >
-            <button>Delete this collection</button>
-          </NavLink>
+            Delete this collection
+          </button>
         )
     }
 
     return (
-      <div onClick={this.props.onClick}>
+      <div onClick={this.props.onClick} className="collection-wrapper">
         <h2>Collection Name: {alias}</h2>
         <div className="color-combo-wrapper">
           {this.props.collection && renderCombosPreview()}

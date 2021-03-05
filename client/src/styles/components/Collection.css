@@ -3,3 +3,21 @@
   flex-flow: row wrap;
   /* border: 1px solid #eee; */
 }
+
+.collection-wrapper {
+  text-align: center;
+  min-height: 20vh;
+  /* min-width: 100vw; */
+  /* padding: 30px; */
+  margin: 0 auto;
+}
+
+.btn {
+  height: 40px;
+  width: 100px;
+  font-size: 16px;
+  background: transparent;
+}
+
+.collection-wrapper {
+}

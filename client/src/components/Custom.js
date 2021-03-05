@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+// import contrast from 'get-contrast'
+// import randomcolor from 'randomcolor'
 
 export default class Custom extends Component {
   constructor(props) {
@@ -7,9 +9,13 @@ export default class Custom extends Component {
       color1: this.props.selectedCombo.color1,
       color2: this.props.selectedCombo.color2,
       save: false,
-      newCollectionInput: ''
+      ratio: this.props.contrast.ratio,
+      score: this.props.contrast.score,
+      alias: ''
     }
   }
+
+  componentDidMount() {}
 
   handleChange = ({ target }) => {
     this.setState(() => ({
@@ -21,12 +27,11 @@ export default class Custom extends Component {
     event.preventDefault()
 
     const newCombo = {
-      contrast_ratio: '3',
-      w3_grade: 'AA',
       color1: this.state.color1,
       color2: this.state.color2
     }
     this.props.setCombo(newCombo)
+    // this.props.calcContrast()
   }
 
   handleSave = (e) => {
@@ -38,18 +43,22 @@ export default class Custom extends Component {
 
   handleAdd = (e) => {
     e.preventDefault()
-    const collection = {
-      [e.target.name]: e.target.value
-    }
 
-    console.log('HANDLE ADD', e.target)
-    if (e.target.name === 'id')
+    // console.log('HANDLE ADD', e.target.name, this.state.alias)
+    // console.log(e.target.value, e.target.name)
+    // console.log(e.target.attributes.alias.value)
+    if (e.target.name === 'id') {
+      const alias = e.target.attributes.alias.value
+
       return this.props.updateCollection({
-        [e.target.name]: e.target.value
+        id: e.target.value,
+        alias: alias
       })
-
-    if (e.target.name === 'alias')
-      return this.props.createCollection({ [e.target.name]: e.target[0].value })
+    } else {
+      return this.props.createCollection({
+        alias: this.state.alias
+      })
+    }
   }
 
   renderCollectionList = () => {
@@ -61,6 +70,7 @@ export default class Custom extends Component {
         <div key={collection._id}>
           <button
             name="id"
+            alias={collection.alias}
             id={collection._id}
             value={collection._id}
             onClick={this.handleAdd}
@@ -76,12 +86,13 @@ export default class Custom extends Component {
   renderAddCollection = () => {
     return (
       <form onSubmit={this.handleAdd}>
-        <label htmlFor="custom-collection"> </label>
         <input
           type="text"
           name="alias"
           id="custom-collection"
           placeholder="Crouton aftershave"
+          value={this.state.alias}
+          onChange={this.handleChange}
         />
         <input type="submit" value="Add" />
       </form>
@@ -90,6 +101,7 @@ export default class Custom extends Component {
 
   render() {
     // console.log('Custom props!', this.props)
+
     return (
       <div>
         <h1>Custom</h1>
@@ -125,6 +137,12 @@ export default class Custom extends Component {
         )}
         <div className="">
           <h1>Color Checker</h1>
+          <div>
+            <div>
+              <h1>{this.state.score}</h1>
+              <h2>{this.state.ratio}</h2>
+            </div>
+          </div>
         </div>
       </div>
     )

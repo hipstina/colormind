@@ -3,7 +3,7 @@ import '../styles/components/Combo.css'
 
 export default class Combo extends Component {
   render() {
-    const { color1, color2, contrast_ratio, w3_grade } = this.props
+    const { color1, color2 } = this.props
 
     return (
       <div className="combo-wrapper">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/screens/Home.css'
-import Picker from './Picker'
-import Viewer from './Viewer'
+// import Picker from './Picker'
+// import Viewer from './Viewer'
 
 export default class Home extends Component {
   constructor() {
@@ -32,15 +32,15 @@ export default class Home extends Component {
   }
 
   render() {
-    const {
-      data,
-      selectedCombo,
-      publishBtn,
-      handleSubmit,
-      handleClick,
-      setCombo,
-      onClick
-    } = this.props
+    // const {
+    //   data,
+    //   selectedCombo,
+    //   publishBtn,
+    //   handleSubmit,
+    //   handleClick,
+    //   setCombo,
+    //   onClick
+    // } = this.props
 
     return (
       <div className="home-layout-wrapper">

@@ -7,23 +7,33 @@ export default class Collections extends Component {
     super(props)
 
     this.state = {
-      data: props.data,
-      setCombo: props.setCombo
+      data: []
+      // setCombo: props.setCombo
     }
+  }
+
+  componentDidMount() {
+    this.setState({ data: this.props.data.reverse() })
   }
 
   render() {
     const cols = this.state.data
-    console.log('Collections props', this.props)
+    // console.log('Collections props', this.props)
     return (
-      <div>
+      <div className="collections-wrapper">
         <h1>Collections</h1>
         {cols.map((col, idx) => {
-          let props = { ...this.props, collection: col }
+          let props = {
+            ...this.props,
+            collection: col
+          }
           return (
             <Collection
-              key={col._id + `${idx}`}
               {...props}
+              // collection={col}
+              // deleteCollection={this.deleteCollection}
+              key={col._id + `${idx}`}
+              // {...this.props}
               onClick={() => this.props.history.push(`/collection/${col._id}`)}
             />
           )
