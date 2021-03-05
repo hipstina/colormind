@@ -3,7 +3,6 @@ import './styles/App.css'
 import { Route, Switch } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './screens/Home'
-import About from './screens/About'
 import Collections from './screens/Collections'
 import Custom from './components/Custom'
 import Collection from './components/Collection'
@@ -229,7 +228,6 @@ export default class App extends Component {
                 />
               )}
             />
-            <Route exact path="/about" component={About} />
           </Switch>
         </main>
       </div>

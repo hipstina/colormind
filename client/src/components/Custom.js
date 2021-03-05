@@ -31,6 +31,7 @@ export default class Custom extends Component {
       color2: this.state.color2
     }
     this.props.setCombo(newCombo)
+
     // this.props.calcContrast()
   }
 
