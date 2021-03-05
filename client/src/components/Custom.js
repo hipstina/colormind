@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import '../styles/components/Custom.css'
-// import contrast from 'get-contrast'
-// import randomcolor from 'randomcolor'
 
 export default class Custom extends Component {
   constructor(props) {
@@ -15,8 +13,6 @@ export default class Custom extends Component {
       alias: ''
     }
   }
-
-  componentDidMount() {}
 
   handleChange = ({ target }) => {
     this.setState(() => ({
@@ -32,8 +28,6 @@ export default class Custom extends Component {
       color2: this.state.color2
     }
     this.props.setCombo(newCombo)
-
-    // this.props.calcContrast()
   }
 
   handleSave = (e) => {
@@ -46,9 +40,6 @@ export default class Custom extends Component {
   handleAdd = (e) => {
     e.preventDefault()
 
-    // console.log('HANDLE ADD', e.target.name, this.state.alias)
-    // console.log(e.target.value, e.target.name)
-    // console.log(e.target.attributes.alias.value)
     if (e.target.name === 'id') {
       const alias = e.target.attributes.alias.value
 
@@ -66,7 +57,7 @@ export default class Custom extends Component {
   renderCollectionList = () => {
     console.log(this.props, this.state)
     // onClick, populate list of existing collection names as radio btns
-    // invoke updateCollection(collectionId)
+
     return this.props.collections.map((collection) => {
       return (
         <div key={collection._id}>
@@ -105,8 +96,6 @@ export default class Custom extends Component {
   }
 
   render() {
-    // console.log('Custom props!', this.props)
-
     return (
       <div
         className="checker-wrapper"

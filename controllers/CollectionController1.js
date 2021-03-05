@@ -1,12 +1,10 @@
 const { Collection } = require('../models')
-const { ColorCombo } = require('../models')
 
 getCollections = async (req, res) => {
   try {
     const collections = await Collection.find().populate('combos')
     console.log(collections.combos)
     if (collections) return res.json(collections)
-    // return res.status(200).json({ collections })
     return res.status(404).send('No collections exist.')
   } catch (error) {
     throw error
@@ -42,15 +40,13 @@ deleteCollection = async (req, res) => {
   try {
     const { id } = req.params
     await Collection.findByIdAndDelete(id)
-    // if (deleted) {
     res.status(200).send(`deleted ${id}`)
-    // } else throw new Error('Collection not found')
   } catch (error) {
     return res.status(500).send(error.message)
   }
 }
 
-// cleanup!
+// for mass collections cleanup
 deleteCollectionsByName = async (req, res) => {
   try {
     const deleted = await Collection.find().deleteMany(req.body)
@@ -65,21 +61,7 @@ deleteCollectionsByName = async (req, res) => {
 //! add check that existing combo is not already in collection
 const findCollectionByName = async (req, res) => {
   try {
-    // const collection = await Collection.findOne({
-    //   alias: req.body.params.alias
-    // })
-    //   .populate('combos')
-    //   .update({ $push: { combos: req.body.combos } })
-    //   .findOne({
-    //     alias: req.body.params.alias
-    //   })
-    // if (collection) {
-    //   return res.send({
-    //     msg: 'This collected already exists and has been updated.',
-    //     collection: `${collection}`
-    //   })
-    // } else {
-    // new collection should never have an empty combos field, but it will still create. It will just return 500 error as undefined
+    // new collection should never have an empty combos field, but it will still create
     const newCollection = await new Collection(req.body)
     await newCollection.save()
 
@@ -102,16 +84,6 @@ const updateCollectionById = async (req, res) => {
       { $push: { combos: req.body.combos } },
       { new: true, upsert: true },
       (err, d) => (err ? err : res.send(d))
-      // (err, collection) => {
-      //   if (err) {
-      //     res.status(500).send(err)
-      //   }
-      //   res.status(500).send('Collection not found')
-      //   if (!collection) {
-      //     res.status(500).send('Collection not found')
-      //   }
-      //   return res.status(200).send(collection)
-      // }
     )
   } catch (error) {
     console.log(res)

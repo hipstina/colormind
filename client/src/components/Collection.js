@@ -24,7 +24,6 @@ export default class Collection extends Component {
       this.getOneCollection()
     }
     // else this.setState({ setCombo: this.props.setCombo })
-    // console.log('collection component mounted!')
   }
 
   getOneCollection = async () => {
@@ -109,7 +108,6 @@ export default class Collection extends Component {
 
     const renderDeleteBtn = () => {
       let comboData = this.state.collection
-      // console.log('comboData', comboData._id)
       if (comboData)
         return (
           <button

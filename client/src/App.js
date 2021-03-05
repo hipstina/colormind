@@ -101,7 +101,6 @@ export default class App extends Component {
   }
 
   setCombo = (combo) => {
-    // console.log('setting combo', combo)
     this.setState({
       selectedCombo: combo
     })
@@ -175,8 +174,6 @@ export default class App extends Component {
                   {...routerProps}
                   data={data}
                   getCollections={this.getCollections}
-
-                  // setCombo={this.setCombo}
                 />
               )}
             />

@@ -8,7 +8,6 @@ export default class Collections extends Component {
 
     this.state = {
       data: []
-      // setCombo: props.setCombo
     }
   }
 
@@ -18,7 +17,6 @@ export default class Collections extends Component {
 
   render() {
     const cols = this.state.data
-    // console.log('Collections props', this.props)
     return (
       <div className="collections-wrapper">
         <h1>Collections</h1>
@@ -30,10 +28,7 @@ export default class Collections extends Component {
           return (
             <Collection
               {...props}
-              // collection={col}
-              // deleteCollection={this.deleteCollection}
               key={col._id + `${idx}`}
-              // {...this.props}
               onClick={() => this.props.history.push(`/collection/${col._id}`)}
             />
           )

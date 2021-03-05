@@ -1,9 +1,7 @@
 const { Schema } = require('mongoose')
-// const Schema = mongoose.Schema
 
 module.exports = new Schema(
   {
-    // _id: Schema.Types.ObjectId,
     contrast_ratio: {
       type: Number,
       required: false
@@ -20,16 +18,6 @@ module.exports = new Schema(
       type: String,
       required: true
     }
-    // color1_id: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'colors'
-    // },
-    // color2_id: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'colors'
-    // }
   },
   { timestamps: true }
 )
-
-// module.exports = mongoose.model('colorCombos', ColorCombo)
