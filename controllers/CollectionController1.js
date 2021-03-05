@@ -41,13 +41,12 @@ createCollection = async (req, res) => {
 deleteCollection = async (req, res) => {
   try {
     const { id } = req.params
-    const deleted = await Collection.findByIdAndDelete(id)
-    if (deleted) return res.status(200).json({ deleted })
-    return res
-      .status(404)
-      .send('Collection with the specified ID does not exists.')
+    await Collection.findByIdAndDelete(id)
+    // if (deleted) {
+    res.status(200).send(`deleted ${id}`)
+    // } else throw new Error('Collection not found')
   } catch (error) {
-    throw error
+    return res.status(500).send(error.message)
   }
 }
 
@@ -66,24 +65,23 @@ deleteCollectionsByName = async (req, res) => {
 //! add check that existing combo is not already in collection
 const findCollectionByName = async (req, res) => {
   try {
-    const collection = await Collection.findOne({
-      alias: req.body.params.alias
-    })
-      .populate('combos')
-      .update({ $push: { combos: req.body.combos } })
-      .findOne({
-        alias: req.body.params.alias
-      })
-    if (collection) {
-      return res.send({
-        msg: 'This collected already exists and has been updated.',
-        collection: `${collection}`
-      })
-    } else {
-      // new collection should never have an empty combos field, but it will still create. It will just return 500 error as undefined
-      const newCollection = await new Collection(req.body)
-      await newCollection.save()
-    }
+    // const collection = await Collection.findOne({
+    //   alias: req.body.params.alias
+    // })
+    //   .populate('combos')
+    //   .update({ $push: { combos: req.body.combos } })
+    //   .findOne({
+    //     alias: req.body.params.alias
+    //   })
+    // if (collection) {
+    //   return res.send({
+    //     msg: 'This collected already exists and has been updated.',
+    //     collection: `${collection}`
+    //   })
+    // } else {
+    // new collection should never have an empty combos field, but it will still create. It will just return 500 error as undefined
+    const newCollection = await new Collection(req.body)
+    await newCollection.save()
 
     if (newCollection) {
       return res.status(200).send(newCollection)
@@ -95,23 +93,28 @@ const findCollectionByName = async (req, res) => {
 // append new combo and return collection
 //! add check that existing combo is not already in collection
 const updateCollectionById = async (req, res) => {
+  console.log('collection params id', req.params.id)
+  console.log('req.body', req.body)
   try {
-    const { id } = req.params
+    const id = req.params.id
     await Collection.findByIdAndUpdate(
       id,
       { $push: { combos: req.body.combos } },
-      { new: true },
-      (err, collection) => {
-        if (err) {
-          res.status(500).send(err)
-        }
-        if (!collection) {
-          res.status(500).send('Collection not found')
-        }
-        return res.status(200).send(collection)
-      }
+      { new: true, upsert: true },
+      (err, d) => (err ? err : res.send(d))
+      // (err, collection) => {
+      //   if (err) {
+      //     res.status(500).send(err)
+      //   }
+      //   res.status(500).send('Collection not found')
+      //   if (!collection) {
+      //     res.status(500).send('Collection not found')
+      //   }
+      //   return res.status(200).send(collection)
+      // }
     )
   } catch (error) {
+    console.log(res)
     return res.status(500).send(error.message)
   }
 }

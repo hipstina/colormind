@@ -4,9 +4,17 @@ const { ColorCombo } = require('../models')
 const createCombo = async (req, res) => {
   try {
     console.log(req.body.color1, req.body.color2)
-    const newCombo = await new ColorCombo(req.body)
-    await newCombo.save()
-    return res.status(201).json({ newCombo })
+    let newCombo = await ColorCombo.find({
+      color1: req.body.color1,
+      color2: req.body.color2
+    })
+    if (newCombo.length === 0) {
+      newCombo = await new ColorCombo(req.body)
+      await newCombo.save()
+      res.status(201).json({ newCombo })
+    } else {
+      res.status(200).json({ newCombo })
+    }
     // to avoid dupes, test the reverse order of each inputted combo
     // const combo = await ColorCombo.find({
     // $or: [
