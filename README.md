@@ -1,6 +1,6 @@
 # Colormind 
 ![colormind banner](./assets/colormind-banner.png)
-## Project status: In development
+## Project status: Launched March 5, 2021
 ### By: Christina Padilla
 
 ### [Portfolio](https://christinapadilla.com) | [GitHub](https://github.com/hipstina) | [LinkedIn](https://linkedin.com/in/hipstina)
