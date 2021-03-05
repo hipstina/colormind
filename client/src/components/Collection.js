@@ -124,7 +124,7 @@ export default class Collection extends Component {
 
     return (
       <div onClick={this.props.onClick} className="collection-wrapper">
-        <h2>Collection Name: {alias}</h2>
+        <h3 className="collections-name">{alias}</h3>
         <div className="color-combo-wrapper">
           {this.props.collection && renderCombosPreview()}
           {collectionId && renderCombosPage()}

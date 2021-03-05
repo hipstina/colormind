@@ -1,0 +1,28 @@
+.checker-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 700px;
+  margin: 0 auto;
+}
+
+.custom-color-warpper {
+  margin-top: 40px;
+  width: 350px;
+}
+
+.colorBox {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+  padding: 0;
+  border-radius: 0.3rem;
+  border: 2px solid #444;
+}
+.checker-score {
+  font-size: 90px;
+}
+.checker-ratio {
+  font-size: 35px;
+}

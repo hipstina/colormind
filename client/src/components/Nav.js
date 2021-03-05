@@ -6,7 +6,9 @@ export default class NavRight extends Component {
   render() {
     return (
       <nav>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className="logo">
+          colormind
+        </NavLink>
         <NavLink to="/checker">Contrast Checker</NavLink>
         <NavLink to="/collections">Collections</NavLink>
       </nav>

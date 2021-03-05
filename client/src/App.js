@@ -8,7 +8,6 @@ import Custom from './components/Custom'
 import Collection from './components/Collection'
 
 import contrast from 'get-contrast'
-// import randomcolor from 'randomcolor'
 import axios from 'axios'
 import { BASE_URL } from './globals'
 
@@ -19,14 +18,10 @@ export default class App extends Component {
     this.state = {
       data: [],
       selectedCombo: {
-        color1: '#ffffff',
+        color1: '#ffac81',
         color2: '#444444'
-        // color1: '',
-        // color2: ''
       },
       contrast: {
-        // ratio: contrast.ratio('#ffffff', '#444444').toFixed(2),
-        // score: contrast.score('#ffffff', '#444444')
         ratio: '',
         score: ''
       }
@@ -61,7 +56,6 @@ export default class App extends Component {
       }
 
       const res = await axios.post(`${BASE_URL}/api/create`, newCombo)
-      // console.log('addcombo', res)
 
       return res
     } catch (error) {
@@ -70,11 +64,6 @@ export default class App extends Component {
   }
 
   updateCollection = async (collection) => {
-    // console.log('udpateCOllection', collection, collection.id)
-    // console.log(
-    //   'update coll path:',
-    //   `${BASE_URL}/api/edit/collection/${collection.id}`
-    // )
     try {
       const comboId = await this.addCombo()
       console.log(comboId)
@@ -96,12 +85,6 @@ export default class App extends Component {
   }
 
   createCollection = async (alias) => {
-    // console.log('CLICKED')
-    // console.log('createCollection arg', alias.alias)
-    // find collection by alias. If existing, append selectedCombo and return message that collection by that name exists.
-    // Else create new collection with selectedCombo
-    // return collection name
-
     try {
       const combo = await this.addCombo()
       console.log(combo)
@@ -126,45 +109,25 @@ export default class App extends Component {
   }
 
   calcContrast = (combo) => {
-    // console.log('calculating contrast', combo)
     const color1 = combo.color1
     const color2 = combo.color2
-    // if contrast ratio of selectedCombo is too low, set selectedCombo.color1 to default color (white or black) to preserve app's legibility
-    // return contrast_ratio
-
-    // console.log('calculating contrast', color1, color2)
 
     let ratio = ''
     let score = ''
-    // let isAccessible = ''
-    // console.log('calcContrast', color1, color2)
 
     ratio = contrast.ratio(`${color1}`, `${color2}`).toFixed(2)
     score = contrast.score(`${color1}`, `${color2}`)
-    // isAccessible = contrast.isAccessible(`${color1}`, `${color2}`)
 
     this.setState(() => ({
       contrast: { ratio: ratio, score: score }
     }))
-
-    // console.log('calcContrast', color1, color2, ratio, score, isAccessible)
   }
 
-  calcRandomCombo = () => {
-    // onload, generate a random color combo to initialize state
-    // invoke calcContrast to make sure the initialize state is good contrast level
-  }
   deleteCollection = async (id) => {
     console.log(`deleting collection + ${id}`)
     try {
       await axios.delete(`${BASE_URL}/api/delete/collection/${id}`)
       console.log(`deleted collection + ${id}`)
-      // const res2 = await axios.get(`${BASE_URL}/api/get/collections`)
-      // this.setState({
-      //   data: res2.data
-      // })
-      // console.log(`STATE DATA UPDATED after DELETE`)
-      // return res2.data
     } catch (error) {
       throw error
     }

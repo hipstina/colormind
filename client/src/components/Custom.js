@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../styles/components/Custom.css'
 // import contrast from 'get-contrast'
 // import randomcolor from 'randomcolor'
 
@@ -75,6 +76,7 @@ export default class Custom extends Component {
             id={collection._id}
             value={collection._id}
             onClick={this.handleAdd}
+            className="btn"
           >
             Add
           </button>
@@ -95,7 +97,9 @@ export default class Custom extends Component {
           value={this.state.alias}
           onChange={this.handleChange}
         />
-        <input type="submit" value="Add" />
+        <button type="submit" value="Add" className="btn">
+          Add
+        </button>
       </form>
     )
   }
@@ -104,44 +108,63 @@ export default class Custom extends Component {
     // console.log('Custom props!', this.props)
 
     return (
-      <div>
-        <h1>Custom</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="color"
-            placeholder="#66ee4f"
-            name="color1"
-            value={this.state.color1}
-            onChange={this.handleChange}
-          />
-          <input
-            type="color"
-            placeholder="#fb396b"
-            name="color2"
-            value={this.state.color2}
-            onChange={this.handleChange}
-          />
-          <button>Preview</button>
-        </form>
-        <details className="custom-btn" onClick={this.handleSave} open={false}>
-          <summary>Save to Collection</summary>
-        </details>
-        {this.state.save && (
-          <div>
-            <h4>Pick a collection </h4>
+      <div
+        className="checker-wrapper"
+        style={{
+          borderColor: `${this.state.color1}`,
+          color: `${this.state.color2}`
+        }}
+      >
+        <div className="custom-color-warpper">
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <input
+                type="color"
+                placeholder="#66ee4f"
+                name="color1"
+                value={this.state.color1}
+                onChange={this.handleChange}
+                className="colorBox"
+              />
+              <input
+                type="color"
+                placeholder="#fb396b"
+                name="color2"
+                value={this.state.color2}
+                onChange={this.handleChange}
+                className="colorBox"
+              />
+            </div>
+            <button className="btn">Preview</button>
+          </form>
+          <details
+            className="custom-btn"
+            onClick={this.handleSave}
+            open={false}
+          >
+            <summary>Save to Collection</summary>
+          </details>
+          {this.state.save && (
+            <div>
+              <h4>Pick a collection </h4>
 
-            <div className="collection-list">{this.renderCollectionList()}</div>
+              <div className="collection-list">
+                {this.renderCollectionList()}
+              </div>
 
-            <h4>... or create a collection</h4>
-            <div className="collection-list">{this.renderAddCollection()}</div>
-          </div>
-        )}
+              <h4>... or create a collection</h4>
+              <div className="collection-list">
+                {this.renderAddCollection()}
+              </div>
+            </div>
+          )}
+        </div>
         <div className="">
-          <h1>Color Checker</h1>
+          <h2>Contrast Score</h2>
           <div>
             <div>
-              <h1>{this.state.score}</h1>
-              <h2>{this.state.ratio}</h2>
+              <h1 className="checker-score">{this.state.score}</h1>
+              <h3 className="checker-ratio">{this.state.ratio}</h3>
             </div>
           </div>
         </div>

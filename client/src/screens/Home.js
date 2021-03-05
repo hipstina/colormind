@@ -24,7 +24,13 @@ export default class Home extends Component {
     return (
       <div className="home-layout-wrapper">
         <section className="home-layout">
-          <h1>colormind</h1>
+          <p>
+            Color is used to bring additional context and nuance to a design. As
+            designers and developers of web applications, we frequently use
+            color to convey or enhance the content’s meaning. However, too often
+            we use color inefficiently, obscuring our content's meaning.
+            Colormind makes finding high contrast colors easy.
+          </p>
         </section>
       </div>
     )

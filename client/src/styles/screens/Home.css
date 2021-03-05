@@ -30,9 +30,11 @@
 
 .home-layout {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
-  width: 100%;
+  width: 500px;
+  font-size: 30px;
+  line-height: 1.6;
 
-  margin: 0 auto;
+  margin: 100px auto 0 auto;
 }
