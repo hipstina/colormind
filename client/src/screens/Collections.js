@@ -7,7 +7,8 @@ export default class Collections extends Component {
     super(props)
 
     this.state = {
-      data: props.data
+      data: props.data,
+      setCombo: props.setCombo
     }
   }
 
@@ -17,11 +18,11 @@ export default class Collections extends Component {
     return (
       <div>
         <h1>Collections</h1>
-        {cols.map((col) => {
+        {cols.map((col, idx) => {
           let props = { ...this.props, collection: col }
           return (
             <Collection
-              key={col._id}
+              key={col._id + `${idx}`}
               {...props}
               onClick={() => this.props.history.push(`/collection/${col._id}`)}
             />

@@ -17,12 +17,12 @@ export default class Collection extends Component {
     }
   }
 
+  // state will depend on which component the router is wrapped around
   componentDidMount() {
     console.log(this.props)
     if (this.state.collectionId) {
       this.getOneCollection()
-    }
-
+    } else this.setState({ setCombo: this.props.setCombo })
     console.log('collection component mounted!')
   }
 
@@ -31,7 +31,6 @@ export default class Collection extends Component {
       let collection = await axios.get(
         `${BASE_URL}/api/view/collection/${this.state.collectionId}`
       )
-      console.log(collection)
       this.setState({ collection: collection.data.collection })
       return collection
     } catch (error) {
@@ -39,9 +38,23 @@ export default class Collection extends Component {
     }
   }
 
+  handleClick = (event) => {
+    event.preventDefault()
+    const newCombo = {
+      contrast_ratio: '3',
+      w3_grade: 'AA',
+      color1: event.target.attributes.color1.value,
+      color2: event.target.attributes.color2.value
+    }
+    this.props.setCombo(newCombo)
+  }
+
+  handleDelete = (event) => {
+    this.props.deleteCollection(event.target.value)
+  }
+
   render() {
     const { alias } = this.state.collection
-    console.log('PLAN B', this.state.collectionId)
 
     const collectionId = this.state.collectionId
 
@@ -49,7 +62,7 @@ export default class Collection extends Component {
       return this.props.collection.combos.map((combo, idx) => {
         return idx <= 2 ? (
           <Combo
-            key={combo._id}
+            key={combo._id + `${idx}`}
             {...combo}
             collectionId={collectionId}
             onClick={() => this.props.history.push(`/collection/${combo._id}`)}
@@ -59,15 +72,20 @@ export default class Collection extends Component {
     }
 
     const renderCombosPage = () => {
-      console.log('PLAN BB:', collectionId, this.state.collection)
       let comboData = this.state.collection
       if (comboData)
-        return comboData.combos.map((combo) => {
+        return comboData.combos.map((combo, idx) => {
           return (
-            <div>
-              <Combo key={combo._id} {...combo} />
+            <div key={combo._id + `${idx}`}>
+              <Combo {...combo} />
               <NavLink to="/checker">
-                <button>Preview</button>
+                <button
+                  onClick={this.handleClick}
+                  color1={combo.color1}
+                  color2={combo.color2}
+                >
+                  Preview
+                </button>
               </NavLink>
             </div>
           )
@@ -78,7 +96,11 @@ export default class Collection extends Component {
       let comboData = this.state.collection
       if (comboData)
         return (
-          <NavLink to="/collections">
+          <NavLink
+            to="/collections"
+            onClick={this.handleDelete}
+            value={collectionId}
+          >
             <button>Delete this collection</button>
           </NavLink>
         )
@@ -86,7 +108,7 @@ export default class Collection extends Component {
 
     return (
       <div onClick={this.props.onClick}>
-        <h1>Collection Name: {alias}</h1>
+        <h2>Collection Name: {alias}</h2>
         <div className="color-combo-wrapper">
           {this.props.collection && renderCombosPreview()}
           {collectionId && renderCombosPage()}
