@@ -41,9 +41,6 @@ $ npm i
 
 ![user workflow](./assets/colormind-user%20workflow.png)
 
-![colormind aaa score](./assets/colormind-aaa.png)
-
-![colormind fail](./assets/colormind-fail.png)
 
 ### **Future Updates**
 Track the development of this project on Trello: https://trello.com/b/B06jilKW/p2
