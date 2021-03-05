@@ -17,9 +17,20 @@ Color is used to bring additional context and nuance to a design. As designers a
 ### **Getting Started**
 To get started, clone this repo to your local machine.
 ```
-git clone https://github.com/hipstina/color-mind.git
+$ git clone https://github.com/hipstina/colormind.git
 ```
 
+Download the dependencies for the server
+```shell
+$ cd colormind
+$ npm i 
+```
+
+Download the dependencies for client
+```shell
+$ cd client
+$ npm i
+```
 
 ### **Screenshots**
 ![component hierarchy](./assets/component-hierarchy.png)
@@ -35,6 +46,8 @@ Track the development of this project on Trello: https://trello.com/b/B06jilKW/p
 
 
 ### **Credits**
+[get-contrast](https://github.com/johno/get-contrast) - A small package for getting the contrast ratio and WCAG score of common color inputs  
+
 [Matthew Deeprose's accessible color palette matrix & webinar](https://mle.southampton.ac.uk/bb/BbTLCEUR/kent/index.html)
 
 [Web AIM Contrast Checker & API](https://webaim.org/resources/contrastchecker/)

@@ -1,18 +1,11 @@
 const mongoose = require('mongoose')
-// require('dotenv').config()
-
-/* let dbUrl =
+require('dotenv').config()
+let dbUrl =
   process.env.NODE_ENV === 'production'
     ? process.env.MONGODB_URI
-    : 'mongodb://127.0.0.1:27017/colorDatabase' */
-
-// let MONGODB_URI =
-//   process.env.PROD_MONGODB ||
-//   process.env.MONGODB_URI ||
-//   'mongodb://127.0.0.1:27017/colorDatabase'
-
+    : 'mongodb://127.0.0.1:27017/colormindDatabas'
 mongoose
-  .connect('mongodb://127.0.0.1:27017/colormindDatabase', {
+  .connect(dbUrl, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: true
