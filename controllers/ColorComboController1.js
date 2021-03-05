@@ -3,29 +3,34 @@ const { ColorCombo } = require('../models')
 // use for getting or creating custom combos only
 const createCombo = async (req, res) => {
   try {
+    console.log(req.body.color1, req.body.color2)
+    const newCombo = await new ColorCombo(req.body)
+    await newCombo.save()
+    return res.status(201).json({ newCombo })
     // to avoid dupes, test the reverse order of each inputted combo
-    const combo = await ColorCombo.find({
-      $or: [
-        {
-          color1: req.body.color1,
-          color2: req.body.color2
-        },
-        {
-          color1: req.body.color2,
-          color2: req.body.color1
-        }
-      ]
-    })
+    // const combo = await ColorCombo.find({
+    // $or: [
+    //   {
+    //     color1: req.body.color1,
+    //     color2: req.body.color2
+    //   },
+    //   {
+    //     color1: req.body.color2,
+    //     color2: req.body.color1
+    //   }
+    // ]
+    //})
     // if combo exists, return existing combo. Else create new one.
-    if (combo) {
-      return res.send(combo)
-    } else {
-      const newCombo = await new ColorCombo(req.body)
-      await newCombo.save()
-    }
-    if (newCombo) {
-      return res.status(200).json({ newCombo })
-    } else return res.status(404).send('Combo not created.')
+    // if (combo) {
+    //   return res.send(combo)
+    // } else {
+    //   const newCombo = await new ColorCombo(req.body)
+    //   await newCombo.save()
+    //   res.send({ newCombo })
+    // }
+    // if (newCombo) {
+    //   return res.send(newCombo)
+    // } else return res.status(404).send('Combo not created.')
   } catch (error) {
     throw error
   }

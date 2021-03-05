@@ -67,15 +67,18 @@ deleteCollectionsByName = async (req, res) => {
 const findCollectionByName = async (req, res) => {
   try {
     const collection = await Collection.findOne({
-      alias: req.body.alias
+      alias: req.body.params.alias
     })
       .populate('combos')
       .update({ $push: { combos: req.body.combos } })
       .findOne({
-        alias: req.body.alias
+        alias: req.body.params.alias
       })
     if (collection) {
-      return res.send(collection)
+      return res.send({
+        msg: 'This collected already exists and has been updated.',
+        collection: `${collection}`
+      })
     } else {
       // new collection should never have an empty combos field, but it will still create. It will just return 500 error as undefined
       const newCollection = await new Collection(req.body)
@@ -83,7 +86,7 @@ const findCollectionByName = async (req, res) => {
     }
 
     if (newCollection) {
-      return res.status(200).json({ newCollection })
+      return res.status(200).send(newCollection)
     } else return res.status(404).send('newCollection not created.')
   } catch (error) {
     return res.status(500).send(error.message)
@@ -105,7 +108,7 @@ const updateCollectionById = async (req, res) => {
         if (!collection) {
           res.status(500).send('Collection not found')
         }
-        return res.status(200).json(collection)
+        return res.status(200).send(collection)
       }
     )
   } catch (error) {

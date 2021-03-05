@@ -3,7 +3,7 @@ const { Schema } = require('mongoose')
 
 module.exports = new Schema(
   {
-    _id: Schema.Types.ObjectId,
+    // _id: Schema.Types.ObjectId,
     contrast_ratio: {
       type: Number,
       required: true

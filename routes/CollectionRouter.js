@@ -10,6 +10,9 @@ Router.delete(
   CollectionController.deleteCollectionsByName
 )
 Router.put('/edit/collection/:id', CollectionController.updateCollectionById)
-Router.post('/find/collection/', CollectionController.findCollectionByName)
+Router.post(
+  '/find/collection/:alias',
+  CollectionController.findCollectionByName
+)
 
 module.exports = Router
