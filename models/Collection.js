@@ -5,7 +5,7 @@ module.exports = new Schema(
   {
     alias: {
       type: String,
-      required: true
+      required: false
     },
     combos: [{ type: Schema.Types.ObjectId, ref: 'colorCombos' }]
   },

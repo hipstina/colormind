@@ -6,11 +6,11 @@ module.exports = new Schema(
     // _id: Schema.Types.ObjectId,
     contrast_ratio: {
       type: Number,
-      required: true
+      required: false
     },
     w3_grade: {
       type: String,
-      required: true
+      required: false
     },
     color1: {
       type: String,
