@@ -4,6 +4,7 @@
 
 ### [Portfolio](https://christinapadilla.com) | [GitHub](https://github.com/hipstina) | [LinkedIn](https://linkedin.com/in/hipstina)
 ***
+![colormind banner](./assets/colormind-banner.png)
 ### **Description** 
 Color is used to bring additional context and nuance to a design. As designers and developers of web applications, we frequently use color to convey or enhance the content’s meaning. However, too often we use color inefficiently, obscuring our content's meaning. Colormind makes finding high contrast colors easy. Colormind is a tool for choosing the best combination of colors that are already part of your brand's color palette. Simple enter in two colors from your brand's color palette and see at a glance which color combinations offer the most contrast for your content. You can also view a curated selection of accessible color palettes in the Colormind collection.
 
@@ -33,13 +34,15 @@ $ npm i
 ```
 
 ### **Screenshots**
-![component hierarchy](./assets/component-hierarchy.png)
+![entity diagram](./assets/colormind-entity-diagram.png)
 
-![wireframe-p1](./assets/wireframe1%20-%202%20colors.png)
+![component hierarchy](./assets/colormind-component%20hierarchy-diagram.png)
 
-![wireframe-p2](./assets/wireframe2%20-%202%20colors.png)
+![user workflow](./assets/colormind-user%20workflow.png)
 
-![wireframe-p3](./assets/wireframe3%20-%202%20colors.png)
+![colormind aaa score](./assets/colormind-aaa.png)
+
+![colormind fail](./assets/colormind-fail.png)
 
 ### **Future Updates**
 Track the development of this project on Trello: https://trello.com/b/B06jilKW/p2
