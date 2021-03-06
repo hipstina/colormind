@@ -7,7 +7,7 @@
 ***
 
 ### **Description** 
-Color is used to bring additional context and nuance to a design. As designers and developers of web applications, we frequently use color to convey or enhance the content’s meaning. However, too often we use color inefficiently, obscuring our content's meaning. Colormind makes finding high contrast colors easy. Colormind is a tool for choosing the best combination of colors that are already part of your brand's color palette. Simple enter in two colors from your brand's color palette and see at a glance which color combinations offer the most contrast for your content. You can also view a curated selection of accessible color palettes in the Colormind collection.
+Colormind is a tool for choosing the best combination of colors that are already part of your brand's color palette. Simple enter in two colors from your brand's color palette and their contrast score. If you like a combo, save it to the collection. You can also view a curated selection of accessible color palettes in the Colormind collection.
 
 ### **Technologies Used**
 * React

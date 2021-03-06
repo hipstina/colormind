@@ -60,7 +60,8 @@ export default class Custom extends Component {
 
     return this.props.collections.map((collection) => {
       return (
-        <div key={collection._id}>
+        <div key={collection._id} className="collection-item-wrapper">
+          <p>{collection.alias}</p>
           <button
             name="id"
             alias={collection.alias}
@@ -71,7 +72,6 @@ export default class Custom extends Component {
           >
             Add
           </button>
-          <p>{collection.alias}</p>
         </div>
       )
     })
@@ -87,6 +87,7 @@ export default class Custom extends Component {
           placeholder="Crouton aftershave"
           value={this.state.alias}
           onChange={this.handleChange}
+          className="add-collection-input"
         />
         <button type="submit" value="Add" className="btn">
           Add
@@ -99,12 +100,12 @@ export default class Custom extends Component {
     return (
       <div
         className="checker-wrapper"
-        style={{
-          borderColor: `${this.state.color1}`,
-          color: `${this.state.color2}`
-        }}
+        // style={{
+        //   backgroundColor: `${this.state.color1}`,
+        //   color: `${this.state.color2}`
+        // }}
       >
-        <div className="custom-color-warpper">
+        <div className="custom-color-wrapper">
           <form onSubmit={this.handleSubmit}>
             <div>
               <input
@@ -131,19 +132,24 @@ export default class Custom extends Component {
             onClick={this.handleSave}
             open={false}
           >
-            <summary>Save to Collection</summary>
+            <summary>Save</summary>
           </details>
           {this.state.save && (
-            <div>
-              <h4>Pick a collection </h4>
-
-              <div className="collection-list">
-                {this.renderCollectionList()}
+            <div className="save-to-collection-wrapper">
+              <div className="pick-collection-wrapper">
+                <h4 className="collection-form-label">Pick a collection </h4>
+                <div className="collection-list">
+                  {this.renderCollectionList()}
+                </div>
               </div>
 
-              <h4>... or create a collection</h4>
-              <div className="collection-list">
-                {this.renderAddCollection()}
+              <div className="add-collection-wrapper">
+                <h4 className="collection-form-label">
+                  Create a new collection
+                </h4>
+                <div className="collection-list">
+                  {this.renderAddCollection()}
+                </div>
               </div>
             </div>
           )}

@@ -9,8 +9,10 @@ export default class NavRight extends Component {
         <NavLink to="/" className="logo">
           colormind
         </NavLink>
-        <NavLink to="/checker">Contrast Checker</NavLink>
-        <NavLink to="/collections">Collections</NavLink>
+        <div>
+          <NavLink to="/checker">Contrast Checker</NavLink>
+          <NavLink to="/collections">Collections</NavLink>
+        </div>
       </nav>
     )
   }

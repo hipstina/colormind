@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 
-.custom-color-warpper {
+.custom-color-wrapper {
   margin-top: 40px;
   width: 350px;
 }
@@ -25,4 +25,46 @@
 }
 .checker-ratio {
   font-size: 35px;
+}
+
+.collection-item-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 280px;
+  margin: 0 auto;
+}
+
+.save-to-collection-wrapper {
+  text-align: left;
+}
+
+.pick-collection-wrapper,
+.add-collection-wrapper {
+  margin: 80px 0;
+}
+
+.add-collection-wrapper form {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.collection-list {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.add-collection-input {
+  background-color: transparent;
+  border: 2px solid #444;
+  height: 30px;
+  max-width: 200px;
+  padding: 0 10px;
+  border-radius: 0.3rem;
+  font-size: 18px;
+}
+
+.collection-form-label {
 }

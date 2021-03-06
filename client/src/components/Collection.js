@@ -13,7 +13,8 @@ export default class Collection extends Component {
     this.state = {
       data: props,
       collectionId: props.match.params.id,
-      collection: props.collection || ''
+      collection: props.collection || '',
+      selectedCombo: props.selectedCombo
     }
   }
 
@@ -78,6 +79,7 @@ export default class Collection extends Component {
             key={combo._id + `${idx}`}
             {...combo}
             collectionId={collectionId}
+            selectedCombo={this.props.selectedCombo}
             onClick={() => this.props.history.push(`/collection/${combo._id}`)}
           />
         ) : null
@@ -89,8 +91,8 @@ export default class Collection extends Component {
       if (comboData)
         return comboData.combos.reverse().map((combo, idx) => {
           return (
-            <div key={combo._id + `${idx}`}>
-              <Combo {...combo} />
+            <div key={combo._id + `${idx}`} className="combo-wrapper">
+              <Combo {...combo} selectedCombo={this.props.selectedCombo} />
               <NavLink to="/checker">
                 <button
                   onClick={this.handleClick}
@@ -111,7 +113,7 @@ export default class Collection extends Component {
       if (comboData)
         return (
           <button
-            className="btn"
+            className="btn delete-btn"
             onClick={this.handleDelete}
             value={comboData._id}
           >
@@ -123,7 +125,14 @@ export default class Collection extends Component {
     return (
       <div onClick={this.props.onClick} className="collection-wrapper">
         <h3 className="collections-name">{alias}</h3>
+
         <div className="color-combo-wrapper">
+          <hr
+            className="collection-divider"
+            style={{
+              borderBottomWidth: `2px `
+            }}
+          ></hr>
           {this.props.collection && renderCombosPreview()}
           {collectionId && renderCombosPage()}
         </div>

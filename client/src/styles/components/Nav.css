@@ -1,18 +1,18 @@
 nav {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: baseline;
   max-width: 800px;
-  min-height: 200px;
-  margin: 0 auto;
+  min-height: 100px;
+  margin: 0 auto 100px auto;
 }
 
 nav a,
 nav a:visited {
   /* border: 1px solid black; */
   padding: 15px;
-  margin-top: 30px;
+  margin: 30px 5px;
   text-decoration: none;
   font-weight: normal;
   color: inherit;
@@ -22,4 +22,5 @@ nav a:visited {
   font-weight: bolder;
   font-size: 20px;
   padding: 0;
+  margin: 30px 5px;
 }

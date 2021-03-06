@@ -1,21 +1,41 @@
 .color-combo-wrapper {
   display: flex;
   flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 400px;
+  margin-bottom: 100px;
   /* border: 1px solid #eee; */
 }
 
 .collection-wrapper {
   text-align: center;
-  min-height: 20vh;
-  /* min-width: 100vw; */
+  /* min-height: 1vh; */
+
   /* padding: 30px; */
-  margin: 0 auto;
-  cursor: pointer;
+  margin: 0 auto 60px auto;
+  /* cursor: pointer; */
+}
+
+.combo-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.collection-divider {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  width: 100%;
 }
 
 .btn {
-  height: 40px;
-  width: 90px;
+  min-height: 40px;
+  min-width: 90px;
   font-size: 16px;
   background: transparent;
   /* border: 2px solid black; */
@@ -28,6 +48,10 @@
   transition: transform 150ms ease;
 }
 
+.delete-btn {
+  margin: 100px;
+}
+
 .btn:hover {
   transform: scale(1.1);
 }
@@ -36,4 +60,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   font-weight: 400;
+  text-align: left;
+  max-width: 600px;
+  margin: 10px;
 }

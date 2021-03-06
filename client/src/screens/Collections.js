@@ -7,7 +7,8 @@ export default class Collections extends Component {
     super(props)
 
     this.state = {
-      data: []
+      data: [],
+      selectedCombo: props.selectedCombo
     }
   }
 
@@ -19,7 +20,10 @@ export default class Collections extends Component {
     const cols = this.state.data
     return (
       <div className="collections-wrapper">
-        <h1>Collections</h1>
+        <div className="collections-title">
+          <h2>Collections</h2>
+          <p>Click on a collection to view all combos.</p>
+        </div>
         {cols.map((col, idx) => {
           let props = {
             ...this.props,

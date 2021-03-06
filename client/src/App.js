@@ -174,6 +174,7 @@ export default class App extends Component {
                   {...routerProps}
                   data={data}
                   getCollections={this.getCollections}
+                  selectedCombo={this.state.selectedCombo}
                 />
               )}
             />
