@@ -10,7 +10,8 @@ export default class Custom extends Component {
       save: false,
       ratio: this.props.contrast.ratio,
       score: this.props.contrast.score,
-      alias: ''
+      alias: '',
+      selectedCombo: this.props.selectedCombo
     }
   }
 
@@ -55,6 +56,13 @@ export default class Custom extends Component {
   }
 
   renderCollectionList = () => {
+    const styles = {
+      btn: {
+        borderColor: `${this.state.selectedCombo.color2} `,
+        background: `${this.state.selectedCombo.color1} `,
+        color: `${this.state.selectedCombo.color2}`
+      }
+    }
     console.log(this.props, this.state)
     // onClick, populate list of existing collection names as radio btns
 
@@ -69,6 +77,7 @@ export default class Custom extends Component {
             value={collection._id}
             onClick={this.handleAdd}
             className="btn"
+            style={styles.btn}
           >
             Add
           </button>
@@ -78,6 +87,16 @@ export default class Custom extends Component {
   }
 
   renderAddCollection = () => {
+    const styles = {
+      btn: {
+        borderColor: `${this.state.selectedCombo.color2} `,
+        background: `${this.state.selectedCombo.color1} `,
+        color: `${this.state.selectedCombo.color2}`
+      },
+      borderColor: {
+        borderColor: `${this.state.selectedCombo.color2} `
+      }
+    }
     return (
       <form onSubmit={this.handleAdd}>
         <input
@@ -87,9 +106,10 @@ export default class Custom extends Component {
           placeholder="Crouton aftershave"
           value={this.state.alias}
           onChange={this.handleChange}
-          className="add-collection-input"
+          className="add-collection-input border-color"
+          style={styles.borderColor}
         />
-        <button type="submit" value="Add" className="btn">
+        <button type="submit" value="Add" className="btn" style={styles.btn}>
           Add
         </button>
       </form>
@@ -97,6 +117,17 @@ export default class Custom extends Component {
   }
 
   render() {
+    const styles = {
+      btn: {
+        borderColor: `${this.state.selectedCombo.color2} `,
+        backgroundColor: `${this.state.selectedCombo.color1} `,
+        color: `${this.state.selectedCombo.color2}`
+      },
+      colorBox: {
+        borderColor: `${this.state.selectedCombo.color2} `,
+        backgroundColor: `${this.state.selectedCombo.color2} `
+      }
+    }
     return (
       <div
         className="checker-wrapper"
@@ -115,6 +146,7 @@ export default class Custom extends Component {
                 value={this.state.color1}
                 onChange={this.handleChange}
                 className="colorBox"
+                style={styles.colorBox}
               />
               <input
                 type="color"
@@ -123,9 +155,12 @@ export default class Custom extends Component {
                 value={this.state.color2}
                 onChange={this.handleChange}
                 className="colorBox"
+                style={styles.colorBox}
               />
             </div>
-            <button className="btn">Preview</button>
+            <button className="btn" style={styles.btn}>
+              Preview
+            </button>
           </form>
           <details
             className="custom-btn"

@@ -3,25 +3,19 @@
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  max-height: 400px;
-  margin-bottom: 100px;
+  max-height: auto;
+  margin-bottom: 30px;
   /* border: 1px solid #eee; */
 }
 
 .collection-wrapper {
   text-align: center;
   /* min-height: 1vh; */
-
+  width: 80vw;
+  max-width: 700px;
   /* padding: 30px; */
   margin: 0 auto 60px auto;
   /* cursor: pointer; */
-}
-
-.combo-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 0;
-  padding: 0;
 }
 
 .collection-divider {
@@ -37,9 +31,8 @@
   min-height: 40px;
   min-width: 90px;
   font-size: 16px;
-  background: transparent;
-  /* border: 2px solid black; */
-  border-color: #444;
+  font-weight: bold;
+
   border-width: 2px;
   border-radius: 0.3rem;
   margin: 20px;
@@ -49,7 +42,9 @@
 }
 
 .delete-btn {
-  margin: 100px;
+  display: block;
+  width: 130px;
+  margin: 50px 20px;
 }
 
 .btn:hover {
@@ -57,9 +52,8 @@
 }
 
 .collections-name {
-  text-transform: uppercase;
   letter-spacing: 0.1rem;
-  font-weight: 400;
+  font-weight: bold;
   text-align: left;
   max-width: 600px;
   margin: 10px;

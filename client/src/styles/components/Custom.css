@@ -16,9 +16,9 @@
   height: 100px;
   width: 100px;
   margin: 5px;
-  padding: 0;
+  padding: 0 1px;
   border-radius: 0.3rem;
-  border: 2px solid #444;
+  border: 1px solid transparent;
 }
 .checker-score {
   font-size: 90px;
@@ -47,7 +47,7 @@
 
 .add-collection-wrapper form {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: center;
 }
 
@@ -58,13 +58,14 @@
 
 .add-collection-input {
   background-color: transparent;
-  border: 2px solid #444;
+  /* border: 2px solid #444; */
   height: 30px;
-  max-width: 200px;
-  padding: 0 10px;
+  max-width: 180px;
+  padding: 0;
   border-radius: 0.3rem;
   font-size: 18px;
 }
 
-.collection-form-label {
+input[type='color' i] {
+  background-color: transparent;
 }

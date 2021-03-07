@@ -3,8 +3,9 @@ const { Collection } = require('../models')
 getCollections = async (req, res) => {
   try {
     const collections = await Collection.find().populate('combos')
-    console.log(collections.combos)
+    console.log('ALL COLLECTIONS FiRST', collections.combos)
     if (collections) return res.json(collections)
+    console.log('ALL COLLECTIONS second', collections.combos)
     return res.status(404).send('No collections exist.')
   } catch (error) {
     throw error

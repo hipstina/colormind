@@ -184,6 +184,7 @@ export default class App extends Component {
               component={(routerProps) => (
                 <Collection
                   {...routerProps}
+                  selectedCombo={this.state.selectedCombo}
                   setCombo={this.setCombo}
                   deleteCollection={this.deleteCollection}
                 />

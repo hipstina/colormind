@@ -18,6 +18,7 @@ export default class Collections extends Component {
 
   render() {
     const cols = this.state.data
+
     return (
       <div className="collections-wrapper">
         <div className="collections-title">

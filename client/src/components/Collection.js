@@ -79,7 +79,7 @@ export default class Collection extends Component {
             key={combo._id + `${idx}`}
             {...combo}
             collectionId={collectionId}
-            selectedCombo={this.props.selectedCombo}
+            selectedCombo={this.state.selectedCombo}
             onClick={() => this.props.history.push(`/collection/${combo._id}`)}
           />
         ) : null
@@ -87,18 +87,28 @@ export default class Collection extends Component {
     }
 
     const renderCombosPage = () => {
+      const styles = {
+        btn: {
+          borderColor: `${this.props.selectedCombo.color2} `,
+          background: `${this.props.selectedCombo.color1} `,
+          color: `${this.props.selectedCombo.color2}`
+        }
+      }
+
       let comboData = this.state.collection
+
       if (comboData)
         return comboData.combos.reverse().map((combo, idx) => {
           return (
-            <div key={combo._id + `${idx}`} className="combo-wrapper">
-              <Combo {...combo} selectedCombo={this.props.selectedCombo} />
+            <div key={combo._id + `${idx}`}>
+              <Combo {...combo} selectedCombo={this.state.selectedCombo} />
               <NavLink to="/checker">
                 <button
                   onClick={this.handleClick}
                   color1={combo.color1}
                   color2={combo.color2}
                   className="btn"
+                  style={styles.btn}
                 >
                   Preview
                 </button>
@@ -109,6 +119,13 @@ export default class Collection extends Component {
     }
 
     const renderDeleteBtn = () => {
+      const styles = {
+        deleteBtn: {
+          borderColor: `${this.props.selectedCombo.color2} `,
+          background: `${this.props.selectedCombo.color2} `,
+          color: `${this.props.selectedCombo.color1}`
+        }
+      }
       let comboData = this.state.collection
       if (comboData)
         return (
@@ -116,27 +133,43 @@ export default class Collection extends Component {
             className="btn delete-btn"
             onClick={this.handleDelete}
             value={comboData._id}
+            style={styles.deleteBtn}
           >
             Delete this collection
           </button>
         )
     }
 
+    const styles = {
+      btn: {
+        borderBottomColor: `${this.props.selectedCombo.color2} `,
+        background: `${this.props.selectedCombo.color2} `,
+        borderColor: `${this.props.selectedCombo.color2} `,
+        color: `${this.props.selectedCombo.color2}`
+      },
+
+      collectionsName: {
+        borderBottomColor: `${this.props.selectedCombo.color2} `
+      }
+    }
+
     return (
       <div onClick={this.props.onClick} className="collection-wrapper">
         <h3 className="collections-name">{alias}</h3>
 
-        <div className="color-combo-wrapper">
+        <div>
           <hr
             className="collection-divider"
-            style={{
-              borderBottomWidth: `2px `
-            }}
+            style={styles.collectionsName}
           ></hr>
-          {this.props.collection && renderCombosPreview()}
-          {collectionId && renderCombosPage()}
+          <div className="color-combo-wrapper">
+            {this.props.collection && renderCombosPreview()}
+          </div>
+          <div className="combo-wrapper">
+            {collectionId && renderCombosPage()}
+          </div>
+          <div>{collectionId && renderDeleteBtn()}</div>
         </div>
-        {collectionId && renderDeleteBtn()}
       </div>
     )
   }
