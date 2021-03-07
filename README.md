@@ -47,7 +47,9 @@ Track the development of this project on Trello: https://trello.com/b/B06jilKW/p
 
 
 ### **Credits**
-[get-contrast](https://github.com/johno/get-contrast) - A small package for getting the contrast ratio and WCAG score of common color inputs  
+[get-contrast](https://github.com/johno/get-contrast) - A small package for getting the contrast ratio and WCAG score of common color inputs 
+
+[random-color](https://github.com/davidmerfield/randomColor) - A tiny script for generating attractive colors 
 
 Wireframe built with [whimsical.com](https://whimsical.com)
 
