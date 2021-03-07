@@ -8,6 +8,7 @@ import Custom from './components/Custom'
 import Collection from './components/Collection'
 
 import contrast from 'get-contrast'
+import randomColor from 'randomcolor'
 import axios from 'axios'
 import { BASE_URL } from './globals'
 
@@ -30,6 +31,32 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getCollections()
+
+    let randomColor1 = randomColor({
+      luminosity: 'dark'
+    })
+
+    let randomColor2 = randomColor({
+      luminosity: 'light'
+    })
+    const contrastRandom = contrast.score(`${randomColor1}`, `${randomColor2}`)
+    console.log('contrastRandom', contrastRandom)
+    if (contrastRandom === 'AAA') {
+      this.setState({
+        selectedCombo: {
+          color1: randomColor1,
+          color2: randomColor2
+        }
+      })
+    } else
+      this.setState({
+        selectedCombo: {
+          color1: randomColor({
+            luminosity: 'light'
+          }),
+          color2: '#333'
+        }
+      })
   }
 
   getCollections = async () => {
