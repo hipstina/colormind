@@ -8,11 +8,23 @@ const createCombo = async (req, res) => {
       color1: req.body.color1,
       color2: req.body.color2
     })
+
+    //  let newCombo = await ColorCombo.find({
+    //    color1: req.body.color1,
+    //    color2: req.body.color2
+    //    { $and:
+    //     [ { color1: { req.body.color1 } }, { color2: { eq.body.color2 } } ]
+    //    }
+    //  })
+
     if (newCombo.length === 0) {
+      console.log("combo doesn't exist yet")
       newCombo = await new ColorCombo(req.body)
       await newCombo.save()
+      console.log('combo exists now:', newCombo)
       res.status(201).json({ newCombo })
     } else {
+      console.log('combo exists!', newCombo)
       res.status(200).json({ newCombo })
     }
     // to avoid dupes, test the reverse order of each inputted combo

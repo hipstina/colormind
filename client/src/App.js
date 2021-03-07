@@ -64,13 +64,14 @@ export default class App extends Component {
   updateCollection = async (collection) => {
     try {
       const comboId = await this.addCombo()
+      console.log('comboId', comboId)
       const arg = {
         alias: collection.alias,
         combos: comboId.data.newCombo._id
       }
 
       await axios.put(`${BASE_URL}/api/edit/collection/${collection.id}`, arg)
-      await this.getCollections()
+      // await this.getCollections()
     } catch (error) {
       console.log(error)
     }

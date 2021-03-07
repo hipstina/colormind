@@ -3,9 +3,7 @@ const { Collection } = require('../models')
 getCollections = async (req, res) => {
   try {
     const collections = await Collection.find().populate('combos')
-    console.log('ALL COLLECTIONS FiRST', collections.combos)
     if (collections) {
-      console.log('ALL COLLECTIONS second', collections.combos)
       return res.json(collections)
     }
     return res.status(404).send('No collections exist.')
@@ -78,16 +76,17 @@ const findCollectionByName = async (req, res) => {
 // append new combo and return collection
 //! add check that existing combo is not already in collection
 const updateCollectionById = async (req, res) => {
-  console.log('collection params id', req.params.id)
-  console.log('req.body', req.body)
+  // console.log('collection params id', req.params.id)
+  // console.log('req.body', req.body)
   try {
     const id = req.params.id
-    await Collection.findByIdAndUpdate(
+    const updatedCollection = await Collection.findByIdAndUpdate(
       id,
-      { $push: { combos: req.body.combos } },
-      { new: true, upsert: true },
+      { $addToSet: { combos: req.body.combos } },
+      // { new: true, upsert: true },
       (err, d) => (err ? err : res.send(d))
     )
+    console.log('updatedCollection', updatedCollection)
   } catch (error) {
     console.log(res)
     return res.status(500).send(error.message)
