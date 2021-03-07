@@ -7,7 +7,7 @@ export default class Custom extends Component {
     this.state = {
       color1: this.props.selectedCombo.color1,
       color2: this.props.selectedCombo.color2,
-      save: false,
+      submitted: '',
       ratio: this.props.contrast.ratio,
       score: this.props.contrast.score,
       alias: '',
@@ -21,20 +21,19 @@ export default class Custom extends Component {
     }))
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault()
 
     const newCombo = {
       color1: this.state.color1,
       color2: this.state.color2
     }
-    this.props.setCombo(newCombo)
+    await this.props.setCombo(newCombo)
   }
 
   handleSave = (e) => {
-    console.log('SAVE ME', e.target)
     this.setState((prevState) => ({
-      save: !prevState.save
+      submitted: 1
     }))
   }
 
@@ -63,7 +62,6 @@ export default class Custom extends Component {
         color: `${this.state.selectedCombo.color2}`
       }
     }
-    console.log(this.props, this.state)
     // onClick, populate list of existing collection names as radio btns
 
     return this.props.collections.map((collection) => {
@@ -98,7 +96,10 @@ export default class Custom extends Component {
       }
     }
     return (
-      <form onSubmit={this.handleAdd}>
+      <form
+        onSubmit={this.handleAdd}
+        onClick={() => this.setState({ submitted: false })}
+      >
         <input
           type="text"
           name="alias"
@@ -116,6 +117,32 @@ export default class Custom extends Component {
     )
   }
 
+  renderSaveOptions = () => {
+    return (
+      <div>
+        <details className="custom-btn" open={false}>
+          <summary>Save</summary>
+
+          <div className="save-to-collection-wrapper">
+            <div className="pick-collection-wrapper">
+              <h4 className="collection-form-label">Pick a collection </h4>
+              <div className="collection-list">
+                {this.renderCollectionList()}
+              </div>
+            </div>
+
+            <div className="add-collection-wrapper">
+              <h4 className="collection-form-label">Create a new collection</h4>
+              <div className="collection-list">
+                {this.renderAddCollection()}
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    )
+  }
+
   render() {
     const styles = {
       btn: {
@@ -129,13 +156,7 @@ export default class Custom extends Component {
       }
     }
     return (
-      <div
-        className="checker-wrapper"
-        // style={{
-        //   backgroundColor: `${this.state.color1}`,
-        //   color: `${this.state.color2}`
-        // }}
-      >
+      <div className="checker-wrapper">
         <div className="custom-color-wrapper">
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -162,32 +183,7 @@ export default class Custom extends Component {
               Preview
             </button>
           </form>
-          <details
-            className="custom-btn"
-            onClick={this.handleSave}
-            open={false}
-          >
-            <summary>Save</summary>
-          </details>
-          {this.state.save && (
-            <div className="save-to-collection-wrapper">
-              <div className="pick-collection-wrapper">
-                <h4 className="collection-form-label">Pick a collection </h4>
-                <div className="collection-list">
-                  {this.renderCollectionList()}
-                </div>
-              </div>
-
-              <div className="add-collection-wrapper">
-                <h4 className="collection-form-label">
-                  Create a new collection
-                </h4>
-                <div className="collection-list">
-                  {this.renderAddCollection()}
-                </div>
-              </div>
-            </div>
-          )}
+          {this.renderSaveOptions()}
         </div>
         <div className="">
           <h2>Contrast Score</h2>

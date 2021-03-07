@@ -20,7 +20,7 @@ export default class Collection extends Component {
 
   // state will depend on which component the router is wrapped around
   componentDidMount() {
-    console.log(this.props)
+    // console.log(this.props)
     if (this.state.collectionId) {
       this.getOneCollection()
     }
@@ -56,7 +56,7 @@ export default class Collection extends Component {
 
   handleDelete = async (event) => {
     event.preventDefault()
-    console.log(event.target.value)
+    // console.log(event.target.value)
 
     try {
       await this.props.deleteCollection(event.target.value)

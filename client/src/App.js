@@ -38,7 +38,6 @@ export default class App extends Component {
       this.setState({
         data: res.data
       })
-      console.log('getCollection res.data:', res.data)
     } catch (error) {
       throw error
     }
@@ -49,12 +48,11 @@ export default class App extends Component {
       const selectedCombo = this.state.selectedCombo
       const contrast = this.state.contrast
       const newCombo = {
-        contrast_ratio: contrast.ratio1,
+        contrast_ratio: contrast.ratio,
         w3_grade: contrast.score,
         color1: selectedCombo.color1,
         color2: selectedCombo.color2
       }
-
       const res = await axios.post(`${BASE_URL}/api/create`, newCombo)
 
       return res
@@ -66,19 +64,13 @@ export default class App extends Component {
   updateCollection = async (collection) => {
     try {
       const comboId = await this.addCombo()
-      console.log(comboId)
       const arg = {
         alias: collection.alias,
         combos: comboId.data.newCombo._id
       }
-      console.log('arg', arg)
-      console.log('collection.id', collection.id)
-      const res = await axios.put(
-        `${BASE_URL}/api/edit/collection/${collection.id}`,
-        arg
-      )
-      console.log(res)
-      this.getCollections()
+
+      await axios.put(`${BASE_URL}/api/edit/collection/${collection.id}`, arg)
+      await this.getCollections()
     } catch (error) {
       console.log(error)
     }
@@ -87,13 +79,12 @@ export default class App extends Component {
   createCollection = async (alias) => {
     try {
       const combo = await this.addCombo()
-      console.log(combo)
       const res = await axios.post(`${BASE_URL}/api/add/collection`, {
         alias: alias.alias,
         combos: combo.data.newCombo._id
       })
 
-      this.getCollections()
+      await this.getCollections()
       return res
     } catch (error) {
       console.log(error)
@@ -123,10 +114,8 @@ export default class App extends Component {
   }
 
   deleteCollection = async (id) => {
-    console.log(`deleting collection + ${id}`)
     try {
       await axios.delete(`${BASE_URL}/api/delete/collection/${id}`)
-      console.log(`deleted collection + ${id}`)
     } catch (error) {
       throw error
     }
