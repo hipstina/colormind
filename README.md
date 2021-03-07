@@ -39,7 +39,7 @@ $ npm i
 
 ![component hierarchy](./assets/colormind-component%20hierarchy-diagram.png)
 
-![user workflow](./assets/colormind-user%20workflow.png)
+![user workflow](./assets/colormind-userworkflow.png)
 
 
 ### **Future Updates**
