@@ -4,10 +4,16 @@ const { ColorCombo } = require('../models')
 const createCombo = async (req, res) => {
   try {
     console.log(req.body.color1, req.body.color2)
-    let newCombo = await ColorCombo.find({
-      color1: req.body.color1,
-      color2: req.body.color2
+    let newCombo = await ColorCombo.findOne({
+      $and: [{ color1: req.body.color1 }, { color2: req.body.color2 }]
     })
+
+    if (!newCombo) {
+      newCombo = await new ColorCombo(req.body)
+      await newCombo.save()
+      console.log('combo exists now:', newCombo)
+      res.status(201).json({ newCombo })
+    }
 
     //  let newCombo = await ColorCombo.find({
     //    color1: req.body.color1,
@@ -17,13 +23,14 @@ const createCombo = async (req, res) => {
     //    }
     //  })
 
-    if (newCombo.length === 0) {
-      console.log("combo doesn't exist yet")
-      newCombo = await new ColorCombo(req.body)
-      await newCombo.save()
-      console.log('combo exists now:', newCombo)
-      res.status(201).json({ newCombo })
-    } else {
+    // if (newCombo.length === 0) {
+    //   console.log("combo doesn't exist yet")
+    //   newCombo = await new ColorCombo(req.body)
+    //   await newCombo.save()
+    //   console.log('combo exists now:', newCombo)
+    //   res.status(201).json({ newCombo })
+    // }
+    else {
       console.log('combo exists!', newCombo)
       res.status(200).json({ newCombo })
     }

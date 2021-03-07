@@ -45,13 +45,11 @@ export default class Collection extends Component {
 
   handleClick = (event) => {
     event.preventDefault()
-    const newCombo = {
-      contrast_ratio: '3',
-      w3_grade: 'AA',
+    const combo = {
       color1: event.target.attributes.color1.value,
       color2: event.target.attributes.color2.value
     }
-    this.props.setCombo(newCombo)
+    this.props.setCombo(combo)
   }
 
   handleDelete = async (event) => {
@@ -73,8 +71,8 @@ export default class Collection extends Component {
 
     const renderCombosPreview = () => {
       const combos = this.props.collection.combos
-      return combos.map((combo, idx) => {
-        return idx >= combos.length - 3 ? (
+      return combos.reverse().map((combo, idx) => {
+        return idx < 3 ? (
           <Combo
             key={combo._id + `${idx}`}
             {...combo}

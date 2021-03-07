@@ -71,7 +71,7 @@ export default class App extends Component {
       }
 
       await axios.put(`${BASE_URL}/api/edit/collection/${collection.id}`, arg)
-      // await this.getCollections()
+      await this.getCollections()
     } catch (error) {
       console.log(error)
     }

@@ -17,7 +17,9 @@ export default class Custom extends Component {
 
   handleChange = ({ target }) => {
     this.setState(() => ({
-      [target.name]: target.value
+      [target.name]: target.value,
+      ratio: '',
+      score: ''
     }))
   }
 

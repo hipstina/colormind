@@ -16,11 +16,12 @@ export default class Combo extends Component {
             <span
               style={{
                 color: `${color2}`,
-                fontSize: '2.5rem',
-                fontWeight: 'bolder'
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                padding: '5px'
               }}
             >
-              A
+              {this.props.w3_grade}
             </span>
           </div>
           <div
@@ -31,11 +32,12 @@ export default class Combo extends Component {
             <span
               style={{
                 color: `${color1}`,
-                fontSize: '2.5rem',
-                fontWeight: 'bolder'
+                fontSize: '1rem',
+                fontWeight: 'normal',
+                padding: '5px'
               }}
             >
-              a
+              {this.props.contrast_ratio}
             </span>
           </div>
         </div>
