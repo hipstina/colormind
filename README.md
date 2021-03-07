@@ -49,12 +49,13 @@ Track the development of this project on Trello: https://trello.com/b/B06jilKW/p
 ### **Credits**
 [get-contrast](https://github.com/johno/get-contrast) - A small package for getting the contrast ratio and WCAG score of common color inputs  
 
-[Matthew Deeprose's accessible color palette matrix & webinar](https://mle.southampton.ac.uk/bb/BbTLCEUR/kent/index.html)
+Wireframe built with [whimsical.com](https://whimsical.com)
 
-[Web AIM Contrast Checker & API](https://webaim.org/resources/contrastchecker/)
+Diagrams built with [Lucid](https://lucid.app/)
 
-[WCAG 2.0 Contrast Ratio Formula](https://www.w3.org/TR/WCAG20-TECHS/G17#G17-procedure)
+[@ahonore42](https://github.com/ahonore42) & [@anpato](https://github.com/anpato) for help with React
 
-[Coolors contrast checker](https://coolors.co/contrast-checker/112a46-acc8e5)
-
-[jxnblk contrast checker](https://colorable.jxnblk.com/440e63/bef59f)
+This project was inspired by:
++ [Matthew Deeprose's accessible color palette matrix & webinar](https://mle.southampton.ac.uk/bb/BbTLCEUR/kent/index.html)
++ [Coolors contrast checker](https://coolors.co/contrast-checker/112a46-acc8e5)
++ [jxnblk contrast checker](https://colorable.jxnblk.com/440e63/bef59f)
