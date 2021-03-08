@@ -40,7 +40,6 @@ export default class App extends Component {
       luminosity: 'light'
     })
     const contrastRandom = contrast.score(`${randomColor1}`, `${randomColor2}`)
-    console.log('contrastRandom', contrastRandom)
     if (contrastRandom === 'AAA') {
       this.setState({
         selectedCombo: {
@@ -91,7 +90,6 @@ export default class App extends Component {
   updateCollection = async (collection) => {
     try {
       const comboId = await this.addCombo()
-      console.log('comboId', comboId)
       const arg = {
         alias: collection.alias,
         combos: comboId.data.newCombo._id

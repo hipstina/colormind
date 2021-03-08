@@ -7,7 +7,7 @@ export default class Custom extends Component {
     this.state = {
       color1: this.props.selectedCombo.color1,
       color2: this.props.selectedCombo.color2,
-      submitted: '',
+
       ratio: this.props.contrast.ratio,
       score: this.props.contrast.score,
       alias: '',
@@ -16,11 +16,16 @@ export default class Custom extends Component {
   }
 
   handleChange = ({ target }) => {
-    this.setState(() => ({
-      [target.name]: target.value,
-      ratio: '',
-      score: ''
-    }))
+    if (target.name === 'alias') {
+      this.setState(() => ({
+        [target.name]: target.value
+      }))
+    } else if (target.name !== 'alias')
+      this.setState(() => ({
+        [target.name]: target.value,
+        ratio: '',
+        score: ''
+      }))
   }
 
   handleSubmit = async (event) => {
@@ -31,12 +36,6 @@ export default class Custom extends Component {
       color2: this.state.color2
     }
     await this.props.setCombo(newCombo)
-  }
-
-  handleSave = (e) => {
-    this.setState((prevState) => ({
-      submitted: 1
-    }))
   }
 
   handleAdd = (e) => {
@@ -93,15 +92,14 @@ export default class Custom extends Component {
         background: `${this.state.selectedCombo.color1} `,
         color: `${this.state.selectedCombo.color2}`
       },
-      borderColor: {
-        borderColor: `${this.state.selectedCombo.color2} `
+      input: {
+        borderColor: `${this.state.selectedCombo.color2}`,
+        color: `${this.state.selectedCombo.color2}`,
+        letterSpacing: `.05rem`
       }
     }
     return (
-      <form
-        onSubmit={this.handleAdd}
-        onClick={() => this.setState({ submitted: false })}
-      >
+      <form onSubmit={this.handleAdd}>
         <input
           type="text"
           name="alias"
@@ -110,7 +108,7 @@ export default class Custom extends Component {
           value={this.state.alias}
           onChange={this.handleChange}
           className="add-collection-input border-color"
-          style={styles.borderColor}
+          style={styles.input}
         />
         <button type="submit" value="Add" className="btn" style={styles.btn}>
           Add
@@ -160,7 +158,10 @@ export default class Custom extends Component {
     return (
       <div className="checker-wrapper">
         <div className="custom-color-wrapper">
-          <form onSubmit={this.handleSubmit}>
+          <form
+            onClick={() => this.setState({ submitted: true })}
+            onSubmit={this.handleSubmit}
+          >
             <div>
               <input
                 type="color"
@@ -185,7 +186,10 @@ export default class Custom extends Component {
               Preview
             </button>
           </form>
-          {this.renderSaveOptions()}
+          {this.state.color1 === this.state.selectedCombo.color1 &&
+          this.state.color2 === this.state.selectedCombo.color2
+            ? this.renderSaveOptions()
+            : null}
         </div>
         <div className="">
           <h2>Contrast Score</h2>
